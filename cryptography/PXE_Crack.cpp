@@ -21,6 +21,8 @@ namespace PXE3
     short length = 0;
     short subPos = 0;
     short Pos = 0;
+    short Counter = 1;
+    short subCounter = 1;
     
     void generateNextComb()
     {
@@ -30,6 +32,11 @@ namespace PXE3
     {
         for(int I = 0;I<length;I++)
         {
+            switch(subCounter)
+            {
+                case(127):subPos++;subCounter=1;break;
+                default:subCounter++;break;
+            }
         }
     }
 }
