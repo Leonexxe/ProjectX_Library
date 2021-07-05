@@ -26,16 +26,35 @@ namespace PXE3
     
     void generateNextComb()
     {
+        comb.empty();
+        for(int I = 0;I<127;I++)
+        {
+            if(I<Pos)
+                comb.push_back(1,1,1,1,1):; // am at school right now, will insert proper code later;
+            else
+                generateNextSubComb();
+                comb.push_back(subComb);
+        }
     }
     
     void generateNextSubComb()
     {
+        subCommb.empty();
         for(int I = 0;I<length;I++)
         {
             switch(subCounter)
             {
-                case(127):subPos++;subCounter=1;break;
-                default:subCounter++;break;
+                case(127):
+                    subPos++;
+                    subCounter=1;
+                    break;
+                default:
+                    subCounter++;
+                    break;
+            }
+            for(int I = 0;I<subPos;I++)
+            {
+                subComb.push_back((char)127);
             }
         }
     }
