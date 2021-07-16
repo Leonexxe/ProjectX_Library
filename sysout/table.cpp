@@ -8,9 +8,9 @@
 
 namespace px
 {
-    void printTable(std::list<std::list<std::string>>* data)
+    void printTable(std::list<std::list<std::string>>* data, bool testData)
     {
-        if(!testForPrintTable(data))
+        if(!testForPrintTable(data) && testData)
         {
             px::sysError("INVALID DATA!");
             return;
