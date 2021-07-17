@@ -8,8 +8,13 @@
 
 namespace px
 {
-    void printTable(std::list<std::list<std::string>>* data)
+    void printTable(std::list<std::list<std::string>>* data, bool testData)
     {
+        if(!testForPrintTable(data) && testData)
+        {
+            px::sysError("INVALID DATA!");
+            return;
+        }
         std::list<int> maxsizes;
         int maxrows = 0;
         for(std::list<std::string> I : *data)
@@ -44,5 +49,17 @@ namespace px
             if(I == 0){for(int II : maxsizes){for(auto III : px::range(II)){std::cout << "-";}std::cout << "-";}std::cout <<"-"<< std::endl;}
         }
         for(int II : maxsizes){for(auto III : px::range(II)){std::cout << "-";}std::cout << "-";}std::cout <<"-"<< std::endl;
+    }
+    
+    bool testForPrintTable(std::list<std::list<std::string>>* list)
+    {
+        int size = 0;
+        for(std::list<std::string> I : *list)
+        {
+            if(I.size() == size && size != 0)
+                size = I.size();
+            else
+                return 0;
+        }
     }
 }
