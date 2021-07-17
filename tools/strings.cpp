@@ -83,3 +83,14 @@ static std::string charArrayToString(int start, int end, char (*array)[S])
     }
     return ret;
 }
+
+namespace px
+{
+    bool strContains(std::string* pool,std::string target)
+    {
+        if (pool->find(target) != std::string::npos) {
+            return 1;
+        }
+        return 0;
+    }
+}

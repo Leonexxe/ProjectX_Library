@@ -1,5 +1,15 @@
 #include "../math.h"
-#include "directSound.cpp"
+
+#if defined(PX_AUDIO_XAUDIO2)
+    #include "xaudio2.cpp"
+    #pragma message("(PX::AUDIO) using xaudio2")
+    #pragma message("(PX::audio) using xaudio2 might impact performance")
+#elif defined(PX_AUDIO_WASAPI)
+    #include "WASAPI.cpp"
+    #pragma message("(PX::AUDIO) using WASAPI")
+#else
+    #error "(PX::AUDIO)(audio_win.cpp)" no audio API defined define "PX_AUDIO_WASAPI" to use WASAPI or "PX_AUDIO_XAUDIO2" to use XAUDIO2
+#endif
 
 namespace px::audio
 {
@@ -19,7 +29,6 @@ namespace px::audio
         public:
         audio_out()
         {
-            IDirectSound8::CreateSoundBuffer();
         }
         ~audio_out()
         {

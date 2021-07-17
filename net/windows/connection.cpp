@@ -34,7 +34,7 @@ namespace px
         std::string receive()
         {
             //waiting for the recv thread to write to this->IN
-            while(this->IN == "" && this->abortRecvWait != 1){/*sleep*/}
+            while(this->IN == "" && this->abortRecvWait != 1){}
             // resetting this->abortRecvWaits since otherwise the receive function would just always be aborted immediately
             if(this->abortRecvWait){this->abortRecvWait = 0;}
             return this->IN;

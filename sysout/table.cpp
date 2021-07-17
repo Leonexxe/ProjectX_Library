@@ -4,7 +4,7 @@
 #include <iostream>
 #include "../tools/lists.cpp"
 #include <projectX/tools/textmanipulation.cpp>
-#include <PXC>
+#include <projectX/common.h>
 
 namespace px
 {

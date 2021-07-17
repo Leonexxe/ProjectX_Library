@@ -1,9 +1,9 @@
 #pragma once
 #include <list>
 #include <string>
+#include <projectX/math.h>
 #include <projectX/tools/textmanipulation.cpp>
 #include <projectX/tools/rangeloop.cpp>
-#include <projectX/math.h>
 #include <projectX/sysout.h>
 #include <projectX/logging/log.cpp>
 #include <projectX/constants/sizes.cpp>

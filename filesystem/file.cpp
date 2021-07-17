@@ -5,75 +5,80 @@
 #include <projectX/tools/lists.cpp>
 #include <fstream>
 #include <iostream>
+#include <projectX/constants/sizes.cpp>
+#include "filesystem_WINDOWS.cpp"
 
 namespace px
 {
     namespace fs
     {
-        static unsigned long MAX_FILE_SIZE = 0;
         class file
         {
             private:
+            int getNextLineIndex()
+            {
+                return this->cLIndex++;
+            }
+            int cLIndex = 0;
             int line_c = 0;
-            public:
-            file(std::string *s)
-            {
-                this->path = s;
-                this->read();
-            }
-            px::fs::path path;
-            std::fstream File;
-
             std::list<std::string> lines;
-            void append(std::string *s) {
-                this->lines.push_back(*s);
-            }
+            std::string filename;
+            public:
+            file(std::string* s,std::string* fname)
+                : filename(*fname) {}
+            ~file(){}
 
-            void save() {
-                std::ofstream fout;
-                fout.open(this->path.getPath());
-                for(std::string I : this->lines)
-                {
-                    fout << I << std::endl;
-                }
-                fout.close();
-            }
-
-            void read() {
-                std::ifstream fin;
-                fin.open(this->path.getPath());
-                char data[px::fs::MAX_FILE_SIZE];
-                fin >> data;
-                std::cout << data << std::endl;
-                for(std::string I : split(data, "\n"))
-                {
-                    this->lines.push_back(I);
-                }
-                this->File.close();
-            }
-
-            std::string getContent() {
-                std::string ret = "";
-                for(std::string I : this->lines)
-                {
-                    ret+="\n"+I;
-                }
-                return ret;
-            }
-
-            std::string nextline() {
-                this->line_c++;
-                return px::tools::lists::getElementByIndex<std::string>(&this->lines,this->line_c);
-            }
-
-            void clear(){this->lines.clear();}
-            void operator<<(std::string *s){this->append(s);}
-            void operator<<(std::string s){this->append(&s);}
-            void operator>>(std::string *s){*s = this->nextline();}
-            void operator=(std::string *s)
+            void read()
             {
-                this->clear();
-                this->append(s);
+                std::ifstream readfile(this->filename);
+                std::string text;
+                while(getline(readfile,text))
+                {
+                    this->lines.push_back(text);
+                }
+                readfile.close();
+            }
+
+            void write(std::string s)
+            {
+                std::ofstream writefile(this->filename);
+                for(std::string I : this->lines)
+                {
+                    writefile << I;
+                }
+                writefile << s;
+                writefile.close();
+            }
+
+            void clear()
+            {
+                this->lines.empty();
+            }
+
+            void operator<<(std::string s)
+            {
+                this->write(s);
+            }
+            
+            void operator>>(std::list<std::string>* s)
+            {
+                for(int I = 0;I<this->lines.size();I++)
+                {
+                    s->push_back(px::tools::lists::getElementByIndex(&this->lines,I));
+                }
+            }
+
+            void operator>>(std::string* s)
+            {
+                for(std::string I : this->lines)
+                {
+                    *s+=I+"\n";
+                }
+            }
+
+            void operator>>(px::fs::file* target)
+            {
+                px::fs::copy(this,target);
             }
         };
     }

@@ -2,6 +2,7 @@
 #include <list>
 #include <projectX/sysout.h>
 #include "../tools/textmanipulation.cpp"
+#include "convert.cpp"
 namespace px
 {
     namespace converters

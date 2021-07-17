@@ -1,3 +1,11 @@
+/*
+Author: Leon Nitschke-Höfer (leonexxe@leonexxe.de)
+OS_AUTOCONFIG.h (c) 2021
+Desc: description
+Created:  2021-07-03T18:03:18.913Z
+Modified: 2021-07-03T18:03:30.997Z
+*/
+
 #if !defined(PX_OS_CONFIG) || defined(IGNORE_AUTOCONFIG_HEADERGAURD)
     // do unix stuff
     #ifdef __unix__

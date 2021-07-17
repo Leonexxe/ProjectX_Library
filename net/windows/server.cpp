@@ -1,7 +1,8 @@
+#pragma once
 #include <string>
 #include <list>
 #include <projectX/OS_AUTOCONFIG.h>
-#include <PXC>
+#include <projectX/common.h>
 #include <thread>
 
 #include "server.h"
@@ -13,14 +14,15 @@ namespace px
         //
         // Server
         //
+        template<int buffersize>
         class server
         {
             public:
-            server(int port,int bufferSize){this->port = port;this->bufferSize = bufferSize;}
+            server(int port){this->port = port;}
 
             int run()
             {
-                std::thread THR_ServMain(px::net::RUN_MAIN,this);
+                std::thread THR_ServMain(px::net::RUN_MAIN<buffersize>,this);
                 this->MAIN_THR = &THR_ServMain;
                 THR_ServMain.join();
             }
@@ -29,7 +31,6 @@ namespace px
             std::list<std::thread*> CLIENT_THREADS;
             std::thread* MAIN_THR;
             int port = 0;
-            int bufferSize = 0;
             bool OK = 0;
 
             void Kick(std::string IP)
@@ -89,7 +90,8 @@ namespace px
         //
         // multithreading
         //
-        void RUN_CLIENT(SOCKET Socket, px::net::server* serv,sockaddr_in client)
+        template<int buffersize>
+        void RUN_CLIENT(SOCKET Socket, px::net::server<buffersize>* serv,sockaddr_in client)
         {
             std::cout << "started client worker for server " << serv << " at " << std::this_thread::get_id() << std::endl;
 
@@ -102,13 +104,13 @@ namespace px
             getnameinfo((sockaddr*)&client, sizeof(client), host_name, NI_MAXHOST, service, NI_MAXSERV, 0);
             inet_ntop(AF_INET, &client.sin_addr, host, NI_MAXHOST);
             std::cout <<px::InfoPrefix() << host <<"("<<host_name<<")"<< " connected on port " << ntohs(client.sin_port) << std::endl;
-            char buf[serv->bufferSize];
+            char buf[buffersize];
             while(serv->running)
             {
-                ZeroMemory(buf,serv->bufferSize);//same as memset(buf,0,serv->buffersize)
+                ZeroMemory(buf,buffersize);//same as memset(buf,0,serv->buffersize)
 
                 // wait for client to send data
-                int bytesReceived = recv(Socket, buf, serv->bufferSize, 0);
+                int bytesReceived = recv(Socket, buf, buffersize, 0);
                 std::cout << px::InfoPrefix() << "received " << buf << " from " << host << std::endl;
                 if(bytesReceived == SOCKET_ERROR)
                 {
@@ -127,7 +129,8 @@ namespace px
             closesocket(Socket);
         }
 
-        void RUN_MAIN(px::net::server* serv)
+        template<int buffersize>
+        void RUN_MAIN(px::net::server<buffersize>* serv)
         {
             std::cout << "started Main worker of " << serv << " at "<< std::this_thread::get_id() << std::endl;
 
@@ -170,7 +173,7 @@ namespace px
                     // opening handler thread
                     sockaddr_in clientFTHR = client;
                     SOCKET clientSocketFTHR = clientSocket;
-                    std::thread CLT_THR(px::net::RUN_CLIENT,clientSocketFTHR,serv,clientFTHR);
+                    std::thread CLT_THR(px::net::RUN_CLIENT<buffersize>,clientSocketFTHR,serv,clientFTHR);
                     serv->CLIENT_THREADS.push_back(&CLT_THR);
                     return;
                 }
