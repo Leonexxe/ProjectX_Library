@@ -5,6 +5,15 @@
 
 namespace px
 {
+    namespace math::geometry
+    {
+        bool isOnDiagonal(int startX, int startY, int endX, int endY, int X, int Y)
+        {
+            if((endX - startX)>(X-startX) && (endY - startY)>(Y-startY))
+                return 1;
+            return 0;
+        }
+    }
     namespace math
     {
         bool __init__(){srand(time(0));return 0;}
