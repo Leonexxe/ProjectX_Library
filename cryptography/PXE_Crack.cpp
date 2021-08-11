@@ -3,16 +3,19 @@
 namespace PXE3
 {
     template<short length>
-    void bruteforce(PXE3::key* <length>Key, std::string cypher)
+    void bruteforce(PXE3::key<length>* Key, std::string cypher)
     {
-        PXE3::key <length>Key_temp;
+        PXE3::key<length> Key_temp;
+        std::cout << px::InfoPrefix() << " starting attempt to crack \"" << cypher << "\"" << std::endl;
         for(int I = 0;I<127;I++)
         {
             for(int II = 1;II<length;II++)
             {
-                Key_temp.subKeys[I].arr[II] = ;
+                Key_temp.subkeys[I].subK[II] = I;
             }
         }
+        // when found (as if that would ever happen)
+        *Key = Key_temp;
     }
     
     std::list<char> subComb;
@@ -23,23 +26,10 @@ namespace PXE3
     short Pos = 0;
     short Counter = 1;
     short subCounter = 1;
-    
-    void generateNextComb()
-    {
-        comb.empty();
-        for(int I = 0;I<127;I++)
-        {
-            if(I<Pos)
-                comb.push_back(1,1,1,1,1):; // am at school right now, will insert proper code later;
-            else
-                generateNextSubComb();
-                comb.push_back(subComb);
-        }
-    }
-    
+
     void generateNextSubComb()
     {
-        subCommb.empty();
+        subComb.empty();
         for(int I = 0;I<length;I++)
         {
             switch(subCounter)
@@ -55,6 +45,21 @@ namespace PXE3
             for(int I = 0;I<subPos;I++)
             {
                 subComb.push_back((char)127);
+            }
+        }
+    }
+    
+    void generateNextComb()
+    {
+        comb.empty();
+        for(int I = 0;I<127;I++)
+        {
+            if(I<Pos)
+                comb.push_back({1,1,1,1,1});
+            else
+            {
+                generateNextSubComb();
+                comb.push_back(subComb);
             }
         }
     }

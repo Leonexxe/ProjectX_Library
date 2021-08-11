@@ -7,6 +7,21 @@ namespace px
 {
     namespace converters
     {
+        void CharArrayToStr(char* src, std::string* target)
+        {
+            for(int I = 0;I<(sizeof(src) / sizeof(src[0]));I++)
+            {
+                *target += src[I];
+            }
+        }
+        void CharArrayToStr(const char* src, std::string* target)
+        {
+            for(int I = 0;I<(sizeof(src) / sizeof(src[0]));I++)
+            {
+                *target += src[I];
+            }
+        }
+
         void strToInt(int* target, std::string* src)
         {
             int mult = 1;

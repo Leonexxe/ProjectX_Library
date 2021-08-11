@@ -12,12 +12,15 @@ namespace px
              * 
              * @tparam type 
              * @param list 
-             * @param index 
+             * @param index
              * @return type (list->back if (index > list))
              */
             template<typename type>
             type getElementByIndex(std::list<type> *list, int index)
             {
+                if(index == list->size())// as to my knowledge list->size() should be faster than iterating through the list, please correct me if im wrong
+                    return list->back();
+
                 int count = 0;
                 for(type I : *list)
                 {

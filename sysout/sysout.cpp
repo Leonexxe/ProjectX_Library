@@ -17,6 +17,11 @@
 #include <stdexcept>
 #include <array>
 #include <sstream>
+#include "../tools/textmanipulation.cpp"
+
+#ifdef PX_WIN
+    #include <windows.h>
+#endif
 
 namespace px {
     namespace console_colors
@@ -137,12 +142,36 @@ namespace px {
         return ss.str();
     }
 
-    namespace mem
-    {
-        template<typename T>
-        auto GAA(T* t)
+    int getConsoleWidth();
+    int getConsoleHeight();
+    #ifdef PX_WIN
+        int getConsoleWidth()
         {
-            return std::addressof(t);
+            CONSOLE_SCREEN_BUFFER_INFO csbi;
+            int columns, rows;
+
+            GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+            columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+            rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+            return columns;
         }
-    }    
+        int getConsoleHeight()
+        {
+            CONSOLE_SCREEN_BUFFER_INFO csbi;
+            int columns, rows;
+
+            GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+            columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+            rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+            return rows;
+        }
+    #endif
+
+    std::string getCenterText(std::string text)
+    {
+        std::string ret;
+        int Left = (px::getConsoleWidth()/2)+text.size();
+        px::text::manipulation::fillFront(&ret,' ',&text,Left);
+        return ret;
+    }
 }
