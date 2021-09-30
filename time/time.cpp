@@ -2,6 +2,7 @@
 #include <ctime>
 #include <string>
 #include <projectX/tools/strings.cpp>
+#include <projectX/tools/textmanipulation.cpp>
 
 namespace px
 {
@@ -28,7 +29,14 @@ namespace px
                 }
             }
         }
-        return std::to_string(hours) + ":" + std::to_string(mins) + ":" + std::to_string(seconds);
+        std::string HH = std::to_string(hours);
+        std::string MM = std::to_string(mins);
+        std::string SS = std::to_string(seconds);
+        std::string MMn = "";
+        std::string SSn = "";
+        px::text::manipulation::fillFront(&MMn,'0',&MM,2);
+        px::text::manipulation::fillFront(&SSn,'0',&SS,2);
+        return  HH + ":" + MMn + ":" + SSn;
     }
 
     #ifdef PX_TIME

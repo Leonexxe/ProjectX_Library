@@ -1,3 +1,4 @@
+#pragma once
 #include <string>
 #include <list>
 namespace px
@@ -30,7 +31,7 @@ namespace px
             template<typename type>
             type* list_to_array(std::list<type>* list)
             {
-                type* array[*list.size()];
+                type* array[list->size()];
                 int i = 0;
                 for(type I : *list)
                 {   
@@ -39,10 +40,15 @@ namespace px
                 return array;
             }
 
-            template<size_t S>
-            void insertIntIntoCharArray(int start,int i,char(&a)[S])
+            /**
+             * @brief converts 'const char*' to 'char*' by calling strdup
+             * 
+             * @param CC 
+             * @return char* 
+             */
+            char* constCharArrayToCharArray(const char* CC)
             {
-                
+                return _strdup(CC);
             }
         }
     }

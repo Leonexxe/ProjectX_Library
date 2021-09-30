@@ -2,6 +2,7 @@
 #include <list>
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "../tools/lists.cpp"
 #include <projectX/tools/textmanipulation.cpp>
 #include <projectX/common.h>
@@ -19,12 +20,13 @@ namespace px
                 return 0;
         }
     }
-    void printTable(std::list<std::list<std::string>>* data, bool testData)
+    std::string getTable(std::list<std::list<std::string>>* data, bool testData)
     {
+        std::stringstream ss;
         if(!testForPrintTable(data) && testData)
         {
             px::sysError("INVALID DATA!");
-            return;
+            return std::string("");
         }
         std::list<int> maxsizes;
         int maxrows = 0;
@@ -47,18 +49,30 @@ namespace px
         }
         for(int I : px::range(maxrows-1))
         {
-            if(I == 0){for(int II : maxsizes){for(auto III : px::range(II)){std::cout << "-";}std::cout << "-";}std::cout <<"-"<< std::endl;}
+            if(I == 0){for(int II : maxsizes){for(auto III : px::range(II)){std::cout << "-";}std::cout << "-";}std::cout <<"-"<< "\n";}
             for(int II : px::range(px::tools::lists::getSize(data)-1))
             {
                 std::list<std::string> items;
                 items = px::tools::lists::getElementByIndex(data, II);
+                #ifdef _MSC_VER
+                    std::string s = px::tools::lists::getElementByIndex(&items, I);
+                #endif
                 std::cout << "|" << px::text::manipulation::fill(
-                    &px::tools::lists::getElementByIndex(&items, I),
+                    #ifdef _MSC_VER
+                        &s,
+                    #else
+                        &px::tools::lists::getElementByIndex(&items, I),
+                    #endif
                     px::tools::lists::getElementByIndex(&maxsizes, II), ' ');
             }
-            std::cout <<"|"<< std::endl;
-            if(I == 0){for(int II : maxsizes){for(auto III : px::range(II)){std::cout << "-";}std::cout << "-";}std::cout <<"-"<< std::endl;}
+            ss <<"|"<< "\n";
+            if(I == 0){for(int II : maxsizes){for(auto III : px::range(II)){ss << "-";}ss << "-";}ss <<"-"<< "\n";}
         }
-        for(int II : maxsizes){for(auto III : px::range(II)){std::cout << "-";}std::cout << "-";}std::cout <<"-"<< std::endl;
+        for(int II : maxsizes){for(auto III : px::range(II)){ss << "-";}ss << "-";}ss <<"-"<< "\n";
+        return ss.str();
+    }
+    void printTable(std::list<std::list<std::string>>* data, bool testData=1)
+    {
+        std::cout << getTable(data,testData);
     }
 }

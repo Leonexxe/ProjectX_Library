@@ -67,6 +67,16 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "xutility": "cpp",
-        "csignal": "cpp"
-    }
+        "csignal": "cpp",
+        "deque": "cpp",
+        "functional": "cpp",
+        "unordered_map": "cpp",
+        "xhash": "cpp",
+        "stack": "cpp",
+        "complex": "cpp",
+        "set": "cpp",
+        "typeindex": "cpp",
+        "variant": "cpp"
+    },
+    "discord.enabled": true
 }

@@ -48,7 +48,8 @@ namespace px
         template<typename inputType, typename returnType>
         returnType avarage(std::list<inputType>* input)
         {
-            int i = 0, double = 0;
+            int i = 0;
+            double total = 0;
             for(inputType I : *input)
             {
                 total+=I;
@@ -128,7 +129,7 @@ namespace px
         }
 
         /**
-         * @brief this is **NOT** realtime safe!
+         * @brief this is **NOT** realtime safe! it is important that one can cast from inputType to returnType
          * 
          * @tparam inputType 
          * @tparam returnType 
@@ -137,18 +138,28 @@ namespace px
          * @return returnType 
          */
         template<typename inputType,typename returnType>
-        returnType random(inputType min, inputType max)
+        returnType random(inputType min, inputType max,std::list<inputType>* exclude = nullptr)
         {
             returnType R = (returnType)rand();
-            while(R < min || R > max)
+            while(R < min || R > max || px::tools::lists::contains(exclude,(inputType)R))
             {
-               R = (returnType)rand();
-               #ifdef PX_DEBUG
+                R = (returnType)rand();
+                #ifdef PX_DEBUG
                     std::cout << R << std::endl;
                 #endif
                
             }
             return R;
+        }
+
+        template<typename T>
+        std::string int_to_hex(T i)
+        {
+          std::stringstream stream;
+          stream << "0x" 
+                 << std::setfill ('0') << std::setw(sizeof(T)*2) 
+                 << std::hex << i;
+          return stream.str();
         }
     }
 }

@@ -1,13 +1,10 @@
 /*############################################################################################################
-# File: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net\connection.h                   #
-# Project: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net                             #
-# Created Date: Wednesday, June 30th 2021, 9:18:58 pm                                                        #
+# File: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\GPU\GPU.cpp                        #
+# Project: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\GPU                             #
+# Created Date: Friday, September 17th 2021, 11:05:32 pm                                                     #
 # Author: Leonexxe (Leon Marcellus Nitschke-Höfer)                                                           #
 # -----                                                                                                      #
 # Copyright (c) 2021 Leon Marcellus Nitschke-Höfer (Leonexxe)                                                #
 # -----                                                                                                      #
 # You may not remove or alter this copyright header.                                                         #
 ############################################################################################################*/
-#pragma once
-#include <string>
-#include "addr.cpp"

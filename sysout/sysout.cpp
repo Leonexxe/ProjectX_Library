@@ -74,9 +74,19 @@ namespace px {
     static std::string ErrorPrefix(){return "\u001b[31m["+px::now()+"][ERROR]\u001b[0m ";}
     static std::string WarnPrefix(){return  "\u001b[33m["+px::now()+"][WARN]\u001b[0m ";}
     static std::string InfoPrefix(){return  "\u001b[34m["+px::now()+"][INFO]\u001b[0m ";}
-    static std::string ErrorPrefixFDT(){return "["+px::datetimeNow().substr(0,23)+"][ERROR]";}
-    static std::string WarnPrefixFDT(){return  "["+px::datetimeNow().substr(0,23)+"][WARN]";}
-    static std::string InfoPrefixFDT(){return  "["+px::datetimeNow().substr(0,23)+"][INFO]";}
+    static std::string ErrorPrefixFDT(){return "\u001b[31m["+px::datetimeNow().substr(0,23)+"][ERROR]\u001b[0m ";}
+    static std::string WarnPrefixFDT() {return "\u001b[33m["+px::datetimeNow().substr(0,23)+"][WARN]\u001b[0m " ;}
+    static std::string InfoPrefixFDT() {return "\u001b[34m["+px::datetimeNow().substr(0,23)+"][INFO]\u001b[0m " ;}
+    static std::string getCustomPrefix(std::string s,px::console_colors::_8colors::Colors color)
+    {
+        std::string text = "["+px::now()+"]["+s+"] ";
+        return getColoredText(text,color);
+    }
+    static std::string getCustomPrefixFDT(std::string s,px::console_colors::_8colors::Colors color)
+    {
+        std::string text = "["+px::datetimeNow().substr(0,23)+"]["+s+"] ";
+        return getColoredText(text,color);
+    }
     //! sysout using pointers
     static void sysError(std::string* out) {std::cout << ErrorPrefix() << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
     static void sysInfo(std::string* out)  {std::cout << InfoPrefix()  << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
@@ -103,7 +113,7 @@ namespace px {
             std::cout << "\b \b";
         }
     }
-
+    
     short SPACES_PER_INDENTION = 4;
     std::string indention(int indentions)
     {
@@ -118,8 +128,8 @@ namespace px {
         return ret;
     }
 
-    std::string sysDone(){return px::console_colors::_8colors::getColoredText("done!", px::console_colors::_8colors::green);}
-    std::string sysFailed(){return px::console_colors::_8colors::getColoredText("failed!", px::console_colors::_8colors::red);}
+    std::string sysDone(){return px::console_colors::_8colors::getColoredText(std::string("done!"), px::console_colors::_8colors::green);}
+    std::string sysFailed(){return px::console_colors::_8colors::getColoredText(std::string("failed!"), px::console_colors::_8colors::red);}
 
     std::string exec(const char *cmd)
     {
@@ -167,11 +177,34 @@ namespace px {
         }
     #endif
 
+    std::string getCenterText(std::string text, int maxWidth)
+    {
+        std::string ret;
+        int Left = (maxWidth/2)+text.size();
+        px::text::manipulation::fillFront(&ret,' ',&text,Left);
+        return ret;
+    }
+
     std::string getCenterText(std::string text)
     {
         std::string ret;
         int Left = (px::getConsoleWidth()/2)+text.size();
         px::text::manipulation::fillFront(&ret,' ',&text,Left);
         return ret;
+    }
+
+    std::string erasePXPrefixColors(std::string* p_s)
+    {
+        std::string s = *p_s;
+        int start = s.find("[")-1;
+        int end = s.find("]")-1;
+        std::string time = s.substr(start,end-1);
+        s.erase(0,end);
+
+        start = s.find("[")-1;
+        end = s.find("]")-1;
+        std::string pre = s.substr(start,end-1);
+        s.erase(0,end);
+        return "["+time+"]["+pre+"] "+s;
     }
 }

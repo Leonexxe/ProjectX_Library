@@ -3,19 +3,21 @@ Author: Leon Nitschke-Höfer (leonexxe@leonexxe.de)
 conv.cpp (c) 2021
 Desc: description
 Created:  2021-06-26T12:23:49.023Z
-Modified: 2021-06-27T17:11:48.358Z
+Modified: 2021-08-24T18:07:17.887Z
 */
 
 #include <bitset>
 #include <sstream>
+#include "../tools/strings.cpp"
 
 namespace px
 {
     namespace math
     {
-        long HexToDec(std::string* hex)
+        template<typename T>
+        T HexToDec(std::string* hex)
         {
-            long dec = 0;
+            T dec = 0;
             std::stringstream ss;
             ss << hex;
             ss >> std::hex >> dec;
@@ -25,14 +27,19 @@ namespace px
         template<int width>
         std::string HexToBinary(std::string* hex)
         {
-            return std::bitset<width>(HexToDec(hex)).to_string();
+            return std::bitset<width>(HexToDec<long long>(hex)).to_string();
         }
 
-        std::string DecToHex(long* dec)
+        std::string DecToHex(long* dec,int fixLen = 0)
         {
             std::stringstream ss;
             ss << std::hex << *dec;
-            return ss.str();
+            if(fixLen == 0)
+                return ss.str();
+            std::string ret;
+            std::string num = ss.str();
+            px::text::manipulation::fillFront(&ret,'0',&num,fixLen);
+            return ret;
         }
 
         template<int width>

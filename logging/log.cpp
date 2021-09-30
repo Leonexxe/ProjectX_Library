@@ -1,51 +1,63 @@
 #pragma once
 #include <string>
-#include <projectX/sysout/sysout.cpp>
-#include <projectX/IO/filehandler.cpp>
+#include <projectX/sysout.h>
+#include <fstream>
+#include "../tools/lists.cpp"
+#ifndef PX_LOGGING_MAIN_LOGGER_NAME
+    #define PX_LOGGING_MAIN_LOGGER_NAME "main"
+#endif
 
 class logger
 {
 public:
-    filehandler FH;
+    std::string logFile;
     std::string NAME;
     logger(std::string logfile, std::string name)
     {
-        this->FH = filehandler(logfile);
+        this->logFile = logfile;
         this->NAME = name;
     }
     logger(){}
 
     void append(std::string msg)
     {
-        px::sysInfo(msg);
-        this->FH.append(px::sysInfoFDT(&msg));
+        std::ofstream outfile;
+        outfile.open(this->logFile, std::ios_base::app);
+        outfile << msg;
+        outfile.close();
     }
 };
 
-static logger loggers[10];
+std::list<logger> loggers;
 
 /**
  * @brief 
  * 
  * @param logfile path to the log file
  * @param name obvious i guess
- * @param position position in the loggers array at which the logger should be (starting at 0)
  * @return logger 
  */
-static logger createlogger(std::string logfile, std::string name, int position)
+logger* createlogger(std::string logfile, std::string name)
 {
-    logger LOG = logger(logfile, name);
-    loggers[position] = LOG;
-    return LOG;
+    loggers.push_back(logger(logfile, name));
+    return &loggers.back();
 }
 
-static logger getLogger(int i){return loggers[i];}
-
-static void quickLog(int logger, std::string data)
+logger getLogger(std::string name)
 {
-    if(logger>0)
+    for(logger I : loggers)
     {
-        getLogger(0).append(data);
+        if(I.NAME == name)
+            return I;
     }
-    getLogger(logger).append(data);
+    px::tools::lists::getElementByIndex(&loggers,0).append(px::ErrorPrefixFDT() + "logger \"" + name + "\" cant be found!");
+}
+
+void quickLog(std::string name, std::string data)
+{
+    if(getLogger(name).NAME != PX_LOGGING_MAIN_LOGGER_NAME)
+    {
+        px::tools::lists::getElementByIndex(&loggers,0).append(data);
+    }
+    getLogger(name).append(data);
 }
