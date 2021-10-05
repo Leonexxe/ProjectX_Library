@@ -22,6 +22,7 @@
 #include "../tools/strings.cpp"
 #include "../tools/arrays.cpp"
 #include "../logging/log.cpp"
+#include "../math/conv.cpp"
 #include <streambuf>
 #ifdef PX_WIN
     #include <windows.h>
@@ -176,7 +177,13 @@ namespace px
             outfile.open(p_iniFile, std::ios_base::app);
             for(std::string II : writeData)
             {
-                outfile << II;
+                std::string WRT = "";
+                #ifdef PX_APP_ENABLE_PXE3_FILE_ENCRYPTION
+                    this->m_pxe3.encrypt(&WRT,&II);
+                #else
+                    WRT = II;
+                #endif
+                outfile << WRT;
             }
             outfile.close();
         }
@@ -431,6 +438,61 @@ namespace px
             createlogger(this->m_LogPath+"\\"+name+".log",name);
         }
 
+        //?
+        //? File IO
+        //?
+        std::string getFile(std::string fName)
+        {
+            std::string RET;
+            std::ifstream t(fName);
+            t.seekg(0, std::ios::end);
+            size_t size = t.tellg();
+            std::string buffer(size, ' ');
+            t.seekg(0);
+            t.read(&buffer[0], size); 
+            #ifdef PX_APP_ENABLE_PXE3_FILE_ENCRYPTION
+                this->m_pxe3.decrypt(&RET,&buffer);
+            #else
+                RET = buffer;
+            #endif
+        }
+
+        #ifdef PX_APP_ENABLE_PXE3_FILE_ENCRYPTION
+            void decryptFile(std::string fName)
+            {
+                std::ifstream t(fName);
+                t.seekg(0, std::ios::end);
+                size_t size = t.tellg();
+                std::string buffer(size, ' ');
+                t.seekg(0);
+                t.read(&buffer[0], size); 
+                
+                std::string O = "";
+                this->m_pxe3.decrypt(&O,&buffer);
+
+                std::ofstream out(fName);
+                out << O;
+                out.close();
+            }
+
+            void encryptFile(std::string fName)
+            {
+                std::ifstream t(fName);
+                t.seekg(0, std::ios::end);
+                size_t size = t.tellg();
+                std::string buffer(size, ' ');
+                t.seekg(0);
+                t.read(&buffer[0], size); 
+
+                std::string O = "";
+                this->m_pxe3.encrypt(&O,&buffer);
+
+                std::ofstream out(fName);
+                out << O;
+                out.close();
+            }
+        #endif
+
 
         //?
         //? get&set
@@ -483,6 +545,10 @@ namespace px
         }
     };
 
+    namespace globals
+    {
+        bool APP_BINARY_MONITOR;
+    }
     template<int threadslots>
     void RUNAPPMONITOR(application<threadslots>* app)
     {
@@ -490,6 +556,15 @@ namespace px
         double sum = 0;
         double add = 1;
         // Start measuring time
+        if(globals::APP_BINARY_MONITOR)
+        {
+            while(1){
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                for(std::string I : app->OUT_BUFFER)
+                    for(char II : I)
+                        std::cout << px::math::DecToBinary<8>(II);
+            }
+        }else{
         auto begin = std::chrono::high_resolution_clock::now();
         while(1)
         {
@@ -559,7 +634,7 @@ namespace px
 
             //print
             std::cout << ss.str();
-        }
+        }}
     }
 
     template<int threadslots>

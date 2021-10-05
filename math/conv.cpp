@@ -6,6 +6,7 @@ Created:  2021-06-26T12:23:49.023Z
 Modified: 2021-08-24T18:07:17.887Z
 */
 
+#pragma once
 #include <bitset>
 #include <sstream>
 #include "../tools/strings.cpp"
@@ -30,7 +31,8 @@ namespace px
             return std::bitset<width>(HexToDec<long long>(hex)).to_string();
         }
 
-        std::string DecToHex(long* dec,int fixLen = 0)
+        template<typename T>
+        std::string DecToHex(T* dec,int fixLen = 0)
         {
             std::stringstream ss;
             ss << std::hex << *dec;
@@ -43,9 +45,9 @@ namespace px
         }
 
         template<int width>
-        std::string DecToBinary(long* dec)
+        std::string DecToBinary(long dec)
         {
-            std::bitset<width>(dec).to_string();
+            return std::bitset<width>(dec).to_string();
         }
 
         void BinaryToDec()

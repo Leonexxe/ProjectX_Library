@@ -1,19 +1,13 @@
-/*
+/*############################################################################################################
 # File: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\cryptography\PXE3.cpp              #
 # Project: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\cryptography                    #
 # Created Date: Wednesday, June 30th 2021, 9:18:57 pm                                                        #
 # Author: Leonexxe (Leon Marcellus Nitschke-Höfer)                                                           #
 # -----                                                                                                      #
-# Last Modified:                                                                                             2021-09-02T17:06:45.857Z
-# Modified By:                                                                                               #
+# Copyright (c) 2021 Leon Marcellus Nitschke-Höfer (Leonexxe)                                                #
 # -----                                                                                                      #
-# Copyright (c) 2021 <<company>>                                                                             #
-#                                                                                                            #
 # You may not remove or alter this copyright header.                                                         #
-# -----                                                                                                      #
-*/
-
-
+############################################################################################################*/
 
 #pragma once
 #include <string>
@@ -101,13 +95,16 @@ namespace PXE3
             #ifdef PXE3_DEBUG
                 std::cout << px::InfoPrefix() << "decrypt function invoked - 0x" << this << std::endl;
             #endif
-            for(int I = 0;I<PXE3_SUPPORTED_CHAR_COUNT;I++)
-            {
-                if(this->m_subKeys[I] == p_cypher->substr(0,this->m_length))
-                {
-                    p_target->push_back(I+PXE3_OFFSET);
-                    p_cypher->erase(0,this->m_length);
-                    break;
+            for(unsigned long long I = 0; I < p_cypher->size(); I+=this->m_length){
+                int II = 1;
+                for(std::string SK : this->m_subKeys){
+                    if(SK == p_cypher->substr(I,this->m_length)){
+                        p_target->push_back((char)(II+(128-PXE3_SUPPORTED_CHAR_COUNT)));
+                        std::cout << "[DECRYPT] added " << (int)(II+(128-PXE3_SUPPORTED_CHAR_COUNT)) << std::endl;
+                        break;
+                    }
+                    else
+                        II++;
                 }
             }
         }
@@ -200,7 +197,7 @@ namespace PXE3
 //? or 2^12×3^5×5^2×7×11×13×19×23×29×31×47×89
 //? or 100011100000001101110011000011011101000000001111001011000000000000_2
 //? for reference "100011100000001101110011000011011101000000001111001011000000000000_2"
-//? would be a 66 bit integer to represent this one would use a 128 bit integer, for reference,
+//? would be a 66 bit integer to represent this, one would use a 128 bit integer, for reference,
 //? the largest integer type supported by c++ is Long Long as a 64 bit integer 
 //? https://www.wolframalpha.com/input/?i=40932597125913292800)
 
@@ -235,7 +232,7 @@ namespace PXE3
 //- from 40 quintillion [1] to 525 undecillion [5].
 //- since 525 undecillion would be a 129 bit Integer
 //- binary: 110001011101011100111110101000110101011001011010010100110110000001011000110100101110110100010010110000000011000000000000000000000
-//- but since a 129 bit Integer would be total nonsense and harmful to my mental health, 
+//- but a 129 bit Integer would be total nonsense and harmful to my mental health, 
 //- one would use a 256 bit integer which is literally 4 times the size of the largest Integer type supported by c++
 //- I'm just gonna leave any further calculations to you.
 
