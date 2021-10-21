@@ -54,15 +54,8 @@ namespace px
             {
                 std::list<std::string> items;
                 items = px::tools::lists::getElementByIndex(data, II);
-                #ifdef _MSC_VER
-                    std::string s = px::tools::lists::getElementByIndex(&items, I);
-                #endif
-                std::cout << "|" << px::text::manipulation::fill(
-                    #ifdef _MSC_VER
-                        &s,
-                    #else
-                        &px::tools::lists::getElementByIndex(&items, I),
-                    #endif
+                std::string s = px::tools::lists::getElementByIndex(&items, I);
+                std::cout << "|" << px::text::manipulation::fill(&s,
                     px::tools::lists::getElementByIndex(&maxsizes, II), ' ');
             }
             ss <<"|"<< "\n";

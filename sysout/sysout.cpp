@@ -32,15 +32,27 @@ namespace px {
             {
                 black, white, red, green, yellow, blue, magenta, cyan
             };
-            static std::string color_reset      = "\u001b[0m";
-            static std::string color_white      = "\u001b[37m";
-            static std::string color_black      = "\u001b[30m";
-            static std::string color_red        = "\u001b[31m";
-            static std::string color_green      = "\u001b[32m";
-            static std::string color_yellow     = "\u001b[33m";
-            static std::string color_blue       = "\u001b[34m";
-            static std::string color_magenta    = "\u001b[35m";
-            static std::string color_cyan       = "\u001b[36m";
+            #ifdef PX_OSX
+                static std::string color_reset      = "\x001b[0m";
+                static std::string color_white      = "\x001b[37m";
+                static std::string color_black      = "\x001b[30m";
+                static std::string color_red        = "\x001b[31m";
+                static std::string color_green      = "\x001b[32m";
+                static std::string color_yellow     = "\x001b[33m";
+                static std::string color_blue       = "\x001b[34m";
+                static std::string color_magenta    = "\x001b[35m";
+                static std::string color_cyan       = "\x001b[36m";
+            #else
+                static std::string color_reset      = "\u001b[0m";
+                static std::string color_white      = "\u001b[37m";
+                static std::string color_black      = "\u001b[30m";
+                static std::string color_red        = "\u001b[31m";
+                static std::string color_green      = "\u001b[32m";
+                static std::string color_yellow     = "\u001b[33m";
+                static std::string color_blue       = "\u001b[34m";
+                static std::string color_magenta    = "\u001b[35m";
+                static std::string color_cyan       = "\u001b[36m";
+            #endif
 
             /**
              * @brief returns "*console color*[str]*console color reset*"
@@ -71,12 +83,12 @@ namespace px {
     }
 
     //! variables
-    static std::string ErrorPrefix(){return "\u001b[31m["+px::now()+"][ERROR]\u001b[0m ";}
-    static std::string WarnPrefix(){return  "\u001b[33m["+px::now()+"][WARN]\u001b[0m ";}
-    static std::string InfoPrefix(){return  "\u001b[34m["+px::now()+"][INFO]\u001b[0m ";}
-    static std::string ErrorPrefixFDT(){return "\u001b[31m["+px::datetimeNow().substr(0,23)+"][ERROR]\u001b[0m ";}
-    static std::string WarnPrefixFDT() {return "\u001b[33m["+px::datetimeNow().substr(0,23)+"][WARN]\u001b[0m " ;}
-    static std::string InfoPrefixFDT() {return "\u001b[34m["+px::datetimeNow().substr(0,23)+"][INFO]\u001b[0m " ;}
+    static std::string ErrorPrefix(){return console_colors::_8colors::getColoredText("["+px::now()+"][ERROR]",console_colors::_8colors::red);}
+    static std::string InfoPrefix(){return  console_colors::_8colors::getColoredText("["+px::now()+"][INFO]",console_colors::_8colors::blue);}
+    static std::string WarnPrefix(){return  console_colors::_8colors::getColoredText("["+px::now()+"][WARN]",console_colors::_8colors::yellow);}
+    static std::string ErrorPrefixFDT(){return console_colors::_8colors::getColoredText("["+px::datetimeNow().substr(0,23)+"][ERROR]",console_colors::_8colors::red);}
+    static std::string InfoPrefixFDT() {return console_colors::_8colors::getColoredText("["+px::datetimeNow().substr(0,23)+"][INFO]",console_colors::_8colors::blue);}
+    static std::string WarnPrefixFDT() {return console_colors::_8colors::getColoredText("["+px::datetimeNow().substr(0,23)+"][WARN]",console_colors::_8colors::yellow);}
     static std::string getCustomPrefix(std::string s,px::console_colors::_8colors::Colors color)
     {
         std::string text = "["+px::now()+"]["+s+"] ";
@@ -88,22 +100,22 @@ namespace px {
         return getColoredText(text,color);
     }
     //! sysout using pointers
-    static void sysError(std::string* out) {std::cout << ErrorPrefix() << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
-    static void sysInfo(std::string* out)  {std::cout << InfoPrefix()  << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
-    static void sysWarn(std::string* out)  {std::cout << WarnPrefix()  << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
-    static void sysErrorFDTOUT(std::string* out) {std::cout << ErrorPrefixFDT() << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
-    static void sysInfoFDTOUT(std::string* out)  {std::cout << InfoPrefixFDT()  << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
-    static void sysWarnFDTOUT(std::string* out)  {std::cout << WarnPrefixFDT()  << "\u001b[37m" << *out << "\u001b[0m" << std::endl;}
+    static void sysError(std::string* out)           {std::cout << ErrorPrefix() << console_colors::_8colors::getColoredText(*out,console_colors::_8colors::red) << std::endl;}
+    static void sysInfo(std::string* out)            {std::cout << InfoPrefix() << console_colors::_8colors::getColoredText(*out,console_colors::_8colors::blue) << std::endl;}
+    static void sysWarn(std::string* out)            {std::cout << WarnPrefix() << console_colors::_8colors::getColoredText(*out,console_colors::_8colors::yellow) << std::endl;}
+    static void sysErrorFDTOUT(std::string* out)     {std::cout << ErrorPrefixFDT() << console_colors::_8colors::getColoredText(*out,console_colors::_8colors::red) << std::endl;}
+    static void sysInfoFDTOUT(std::string* out)      {std::cout << InfoPrefixFDT() << console_colors::_8colors::getColoredText(*out,console_colors::_8colors::blue) << std::endl;}
+    static void sysWarnFDTOUT(std::string* out)      {std::cout << WarnPrefixFDT() << console_colors::_8colors::getColoredText(*out,console_colors::_8colors::yellow) << std::endl;}
     static std::string sysErrorFDT(std::string* out) {return ErrorPrefixFDT() + *out;}
     static std::string sysInfoFDT(std::string* out)  {return InfoPrefixFDT()  + *out;}
     static std::string sysWarnFDT(std::string* out)  {return WarnPrefixFDT()  + *out;}
     //! sysout not using pointers
-    static void sysError(std::string out) {std::cout << ErrorPrefix() << "\u001b[37m" << out << "\u001b[0m" << std::endl;}
-    static void sysInfo(std::string out)  {std::cout << InfoPrefix()  << "\u001b[37m" << out << "\u001b[0m" << std::endl;}
-    static void sysWarn(std::string out)  {std::cout << WarnPrefix()  << "\u001b[37m" << out << "\u001b[0m" << std::endl;}
-    static void sysErrorFDTOUT(std::string out) {std::cout << ErrorPrefixFDT() << "\u001b[37m" << out << "\u001b[0m" << std::endl;}
-    static void sysInfoFDTOUT(std::string out)  {std::cout << InfoPrefixFDT()  << "\u001b[37m" << out << "\u001b[0m" << std::endl;}
-    static void sysWarnFDTOUT(std::string out)  {std::cout << WarnPrefixFDT()  << "\u001b[37m" << out << "\u001b[0m" << std::endl;}
+    static void sysError(std::string out)       {sysError(&out);}
+    static void sysInfo(std::string out)        {sysInfo(&out);}
+    static void sysWarn(std::string out)        {sysWarn(&out);}
+    static void sysErrorFDTOUT(std::string out) {sysErrorFDTOUT(&out);}
+    static void sysInfoFDTOUT(std::string out)  {sysInfoFDTOUT(&out);}
+    static void sysWarnFDTOUT(std::string out)  {sysWarnFDTOUT(&out);}
 
     void cDelete(std::string* lastout){for(char I : *lastout){std::cout << "\b \b";}}
     void cDelete(int cc)
@@ -133,15 +145,21 @@ namespace px {
 
     std::string exec(const char *cmd)
     {
-        std::array<char, 128> buffer;
         std::string result;
-        std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd, "r"), _pclose);
-        if (!pipe) {
-            throw std::runtime_error("popen() failed!");
-        }
-        while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
-            result += buffer.data();
-        }
+        #ifdef PX_WIN
+            std::array<char, 128> buffer;
+            #ifdef PX_WIN
+                std::unique_ptr<FILE, decltype(&_pclose)> pipe(_popen(cmd, "r"), _pclose);
+            #else
+                std::unique_ptr<FILE, decltype(&pclose)> pipe(popen(cmd, "r"), pclose);
+            #endif
+            if (!pipe) {
+                throw std::runtime_error("popen() failed!");
+            }
+            while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
+                result += buffer.data();
+            }
+        #endif
         return result;
     }
 
@@ -151,9 +169,7 @@ namespace px {
         ss << i;
         return ss.str();
     }
-
-    int getConsoleWidth();
-    int getConsoleHeight();
+    
     #ifdef PX_WIN
         int getConsoleWidth()
         {
@@ -188,7 +204,12 @@ namespace px {
     std::string getCenterText(std::string text)
     {
         std::string ret;
-        int Left = (px::getConsoleWidth()/2)+text.size();
+        #ifndef PX_ARM64
+            int Left = (px::getConsoleWidth()/2)+text.size();
+        #else
+            #warning cant use getConsoleWidth function on arm64, using constant 100 instead!
+            int Left = 100;
+        #endif
         px::text::manipulation::fillFront(&ret,' ',&text,Left);
         return ret;
     }

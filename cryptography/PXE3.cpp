@@ -16,8 +16,8 @@
 #include "../sysout.h"
 #include "../tools/lists.cpp"
 
-#define PXE3_OFFSET 0x0000
-#define PXE3_SUPPORTED_CHAR_COUNT 0x0080
+#define PXE3_OFFSET 0 // 0
+#define PXE3_SUPPORTED_CHAR_COUNT 255 // 128
 #ifndef PXE3_COVERFLOW_MAX
     #define PXE3_COVERFLOW_MAX 0x0064
 #endif
@@ -99,12 +99,17 @@ namespace PXE3
                 int II = 1;
                 for(std::string SK : this->m_subKeys){
                     if(SK == p_cypher->substr(I,this->m_length)){
-                        p_target->push_back((char)(II+(128-PXE3_SUPPORTED_CHAR_COUNT)));
-                        std::cout << "[DECRYPT] added " << (int)(II+(128-PXE3_SUPPORTED_CHAR_COUNT)) << std::endl;
+                        p_target->push_back((char)(II+(PXE3_OFFSET)));
+                        std::cout << "[DECRYPT] added " << (int)(II+(PXE3_OFFSET)) << std::endl;
                         break;
                     }
                     else
+                    {
+                        #ifdef PXE3_DEBUG
+                            std::cout <<"[DECRYPT] "<< p_cypher->substr(I,this->m_length) << " =/= " << SK << std::endl;
+                        #endif
                         II++;
+                    }
                 }
             }
         }
@@ -163,6 +168,25 @@ namespace PXE3
                 #endif
                 this->m_COverflowChars.push_back(II);
             }
+
+            #ifndef PXE3_GENKEY_NT
+                //FIXME: PXE3 GENKEY TEST
+                std::string cypherMSG = "";
+                std::string msg = "";
+                std::string msg2 = "";
+                for(int CTE = PXE3_OFFSET+1;CTE<PXE3_SUPPORTED_CHAR_COUNT;CTE++)
+                    msg.push_back(CTE);
+                this->encrypt(&cypherMSG,&msg);
+                this->decrypt(&msg2,&cypherMSG);
+                if(msg2 != msg)
+                {
+                    px::sysError("[PXE3] The generated key is invalid, generating new key!");
+                    std::cout << px::ErrorPrefix() << msg << std::endl;
+                    std::cout << px::ErrorPrefix() << msg2 << std::endl;
+                    exit(-1);
+                    this->genKey(p_keyLength); // invalid key, generate new key (the odds of this ever happening are astronomically small but just in case)
+                }
+            #endif
         }
 
         std::string getKey()
@@ -212,7 +236,7 @@ namespace PXE3
 //~ final words
 //~ ...while in theory you could go ahead and bruteforce the shit out of the Key, 
 //~ it would not be finished by the time your great grandchildren die.
-//~ lets just say the possibilities for the entire Key would in the same ratio to n×r
+//~ lets just say the possibilities for the entire Key would be in the same ratio to n×r
 //~ as with the possibilities for each subkey in which case the ratio would be ~42 quadrillion [1] to 1
 //~ the possibilities would come out at 5 sextillion [2] possibilities. (which is probably a HUGE underestimation but well, i can't check)
 //~ lets be optimistic and say you can try 10 Million keys a second, you would still need 

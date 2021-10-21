@@ -48,7 +48,11 @@ namespace px
              */
             char* constCharArrayToCharArray(const char* CC)
             {
-                return _strdup(CC);
+                #ifdef PX_WIN
+                    return _strdup(CC);
+                #else
+                    return strdup(CC);
+                #endif
             }
         }
     }

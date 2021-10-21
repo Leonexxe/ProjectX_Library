@@ -128,6 +128,14 @@ namespace px
                     this->setThreadLimit(limit);
                     this->LOG(px::InfoPrefix()+"set thread limit to "+strLimit+" threads" + "\n",1);
                 }
+                #ifdef PX_APP_ENABLE_CLI_L_INI
+                else if(argv[0] == "-C")
+                    if(argv[1] == "--ini")
+                    {
+                        std::cout << this->getINI(argv[2], argv[3]) << std::endl;
+                        this->taskkill();
+                    }
+                #endif
             }
             this->openLog();
             std::string bar   = "################################################################################";
@@ -556,6 +564,14 @@ namespace px
         double sum = 0;
         double add = 1;
         // Start measuring time
+        #ifdef PX_ARM64
+            #warning (px) app monitor can't be used on arm64
+            while(1) {
+                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+                for(std::string I : app->OUT_BUFFER)
+                    std::cout << I;
+            }
+        #else
         if(globals::APP_BINARY_MONITOR)
         {
             while(1){
@@ -635,6 +651,7 @@ namespace px
             //print
             std::cout << ss.str();
         }}
+        #endif
     }
 
     template<int threadslots>

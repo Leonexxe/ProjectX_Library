@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <list>
+#include <sstream>
 #include "textmanipulation.cpp"
 #include <iostream>
 #ifdef PX_BOOST
@@ -150,6 +151,7 @@ namespace px
                 return 0;
             }
         }
+        return 1;
     }
 
     bool strEndsWithNewLine(std::string* str,bool addIfNot = 0)
