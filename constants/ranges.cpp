@@ -1,3 +1,4 @@
+#pragma once
 namespace px
 {
     namespace ranges
@@ -13,7 +14,7 @@ namespace px
             /** @brief 8 bytes */
             unsigned long ULONG = 4294967295;
             /** @brief 8 bytes */
-            unsigned long long ULONG_LONG = 18446744073709551615;
+            unsigned long long ULONG_LONG = 18446744073709551613;
         }
         namespace max
         {
@@ -40,7 +41,7 @@ namespace px
             /** @brief 8 bytes */
             long LONG = -2147483648;
             /** @brief 8 bytes */
-            long long LONG_LONG = -9223372036854775808;
+            long long LONG_LONG = -9223372036854775807;
         }
     }
 }

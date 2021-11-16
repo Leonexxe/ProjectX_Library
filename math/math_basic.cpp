@@ -20,7 +20,11 @@ namespace px
         bool m_init = __init__();
         static const int PERCENTAGE_ACCURACY = sizes::million;
         static const double PI = 3.14159265359; /*thanks google <3*/
+        /*
+        * @brief pointer to PI
+        */
         static const double* theFuckedUpNumber = &PI;
+        
         /**
          * @brief calculate if a number is in between a min and a max
          * 
@@ -57,7 +61,8 @@ namespace px
         template<typename inputType, typename returnType>
         returnType avarage(std::list<inputType>* input)
         {
-            int i = 0, double = 0;
+            int i = 0;
+            double total = 0;
             for(inputType I : *input)
             {
                 total+=I;
@@ -133,11 +138,17 @@ namespace px
         template<typename returnType>
         returnType random()
         {
-            return (returnType)rand();
+            #ifdef PX_c1
+                returnType R = (returnType)(rand())*0.0000001;
+                return R;
+            #else
+                returnType R = (returnType)rand();
+                return R;
+            #endif
         }
 
         /**
-         * @brief this is **NOT** realtime safe!
+         * @brief this is **NOT** realtime safe! it is important that one can cast from inputType to returnType
          * 
          * @tparam inputType 
          * @tparam returnType 
@@ -146,18 +157,32 @@ namespace px
          * @return returnType 
          */
         template<typename inputType,typename returnType>
-        returnType random(inputType min, inputType max)
+        returnType random(inputType min, inputType max,std::list<inputType>* exclude = nullptr)
         {
-            returnType R = (returnType)rand();
-            while(R < min || R > max)
+            returnType R = random<returnType>();
+            while(R < min || R > max || px::tools::lists::contains(exclude,(inputType)R))
             {
-               R = (returnType)rand();
-               #ifdef PX_DEBUG
+                R = random<returnType>();
+                #ifdef PX_DEBUG
                     std::cout << R << std::endl;
                 #endif
-               
             }
             return R;
+        }
+
+        template<typename T>
+        std::string int_to_hex(T i)
+        {
+          std::stringstream stream;
+          #ifdef PX_WIN
+            stream << "0x" 
+                   << std::setfill ('0') << std::setw(sizeof(T)*2) 
+                   << std::hex << i;
+          #else
+            stream << "0x"
+                    << std::hex << i;
+          #endif
+          return stream.str();
         }
     }
 }

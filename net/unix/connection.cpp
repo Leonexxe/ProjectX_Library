@@ -1,102 +1,162 @@
+/*############################################################################################################
+# File: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net\windows\connection.cpp         #
+# Project: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net\windows                     #
+# Created Date: Wednesday, June 30th 2021, 9:18:58 pm                                                        #
+# Author: Leonexxe (Leon Marcellus Nitschke-Höfer)                                                           #
+# -----                                                                                                      #
+# Copyright (c) 2021 Leon Marcellus Nitschke-Höfer (Leonexxe)                                                #
+# -----                                                                                                      #
+# You may not remove or alter this copyright header.                                                         #
+############################################################################################################*/
 #pragma once
+#define PX_WIN
 #include <string>
 #include <list>
 #include <projectX/tools/strings.cpp>
 #include <projectX/sysout.h>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <netdb.h>
 #include <projectX/net/addr.cpp>
-#include <pthread.h>
+#include <thread>
+#include "../net.cpp"
+#include "../../net.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <netdb.h>
+#include <netinet/in.h>
+#include <unistd.h>
 
-static std::string* tempdatainpointer;
-static int buffersize = 8192;
-static int lastclient = 0;
-static int last_sleep_ms = 0;
-static int threads = 0;
-static std::string (*interpreter)(std::string*);
-static void *conv_loop(void *tid)
+//TODO: implement unix net classes
+
+namespace px
 {
-    std::string* data_send = tempdatainpointer;
-    char buffer[buffersize];
-    int client = lastclient;
-    int sleep_ms = last_sleep_ms;
-    recv(client, buffer, buffersize, 0);
-    sysInfo("received 200 from server");
-    while(1)
+    class connection
     {
-        while(*data_send == ""){};
-        const char* temp = data_send->c_str();
-        strcpy(buffer, temp);
-        sysInfo("sending " + *data_send);
-        *data_send = "";
-        send(client, buffer, buffersize, 0);
-        recv(client, buffer, buffersize, 0);
-        std::string msg = buffer;
-        interpreter(&msg);
-    }
-    sysInfo("connection closed");
-    pthread_exit(NULL);
+        private:
+        bool running = 1;
+        bool m_switchProtocol = 0;
+        bool hasStopped = 0;
+        std::string m_lastReceived = "";
+        std::string m_send = "NULL";
+
+        public:
+        px::net::netProtocol protocol = px::net::STR;
+        std::string(*RecvFunction)(std::string*,connection*) = nullptr;
+        std::string _IN = "";
+        std::string _OUT = "";
+        std::string m_STRSend;
+        bool disconnectAfterReceive = 0;
+        int sockfd;
+        px::addr ADDR;
+
+        connection(px::addr p_ADDR,std::string(*recvFunct)(std::string*, connection*),std::string STRsend = "")
+            :ADDR(p_ADDR),RecvFunction(recvFunct),m_STRSend(STRsend)
+        {}
+
+        int _connect()
+        {
+            //TODO: implement function
+            //connect
+            struct sockaddr_in serv_addr;
+            struct hostent *server;
+
+            /* create socket point*/
+            this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
+
+            if(sockfd < 0) {
+                perror("ERROR opening socket");
+                return -1;
+            }
+
+            server = gethostbyname(this->ADDR.IP.c_str());
+
+            if(server == NULL) {
+                std::cout << "host not found, quitting!";
+                return -2;
+            }
+
+            bzero((char*) &serv_addr, sizeof(serv_addr));
+            serv_addr.sin_family = AF_INET;
+            bcopy((char*)server->h_addr, (char*)&serv_addr.sin_addr.s_addr, server->h_length);
+            serv_addr.sin_port = htons(this->ADDR.port);
+
+            /* now connect to the server */
+            if(connect(this->sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0)
+                return -3;
+
+            //RUN
+            this->Run();
+            return 0;
+        }
+
+        void reconnect()
+        {
+            this->running = 0;
+            while(!this->hasStopped){}
+            this->_connect();
+        }
+
+        unsigned char doSend()
+        {
+            const char* msg = this->m_send.c_str();
+            int n;
+            n = write(this->sockfd, msg, strlen(msg));
+            if(n < 0)
+                return 1;
+            return 0;
+        }
+
+        unsigned char _send(std::string s)
+        {
+            if(this->protocol != px::net::RSR)
+                return 1;
+            if(this->m_send != "")
+                return 2;
+            this->m_send = s;
+            this->doSend();
+            return 0;
+        }
+
+        std::string getLastReceived(bool clear = 1)
+        {
+            while(this->m_lastReceived == ""){}
+            if(clear)
+            {
+                std::string ret = this->m_lastReceived;
+                this->m_lastReceived = "";
+                return ret;
+            }
+            else
+                return this->m_lastReceived;
+        }
+
+        std::string receive()
+        {
+            char server_reply[PX_NET_BUFFER_SIZE];
+            bzero(server_reply, PX_NET_BUFFER_SIZE);
+            int n = read(sockfd, server_reply, PX_NET_BUFFER_SIZE);
+            if(n < 0)
+                return "";
+            return std::string(server_reply);
+        }
+
+        int setProtocol(px::net::netProtocol protocol)
+        {
+            this->protocol = protocol;
+            this->m_switchProtocol = 1;
+        }
+
+        int Run()
+        {
+            this->_send(this->m_STRSend);
+            while(this->running){
+                std::string resp = this->receive();
+                this->_send(this->RecvFunction(&resp,this));
+                std::this_thread::sleep_for(std::chrono::milliseconds(10));}
+            return 0;
+        }
+
+        void kill()
+        {
+            this->running = 0;
+        }
+    };
 }
-class connection
-{
-public:
-    addr connADDR;
-    std::string data_send = "";
-    /**
-     * @brief Connect to a server
-     * 
-     * @param IPv4 
-     * @param port 
-     */
-    connection(addr* ADDR, int sleep_ms, bool getnewthread,std::string interpreterfunct(std::string*))
-    {
-        interpreter = interpreterfunct;
-        this->connADDR = *ADDR;
-        int client;
-        int port = ADDR->port;
-        bool running = true;
-        char* ip = "127.0.0.1";
-        struct sockaddr_in server_addr;
-        // init socket
-        client = socket(AF_INET, SOCK_STREAM, 0);
-        if(client < 0)
-        {
-            sysError("error creating socket");
-            exit(-5);
-        }
-        server_addr.sin_family = AF_INET;
-        server_addr.sin_port = htons(port);
-        inet_aton(ip, &server_addr.sin_addr);
-        
-        // connecting to server
-        sysInfo("trying to connect to " + ADDR->IP + ":" + std::to_string(port));
-        if(connect(client, (struct sockaddr*)&server_addr, sizeof(server_addr)) >= 0)
-        {
-            sysInfo("connecting to server...");
-        }
-        else
-        {
-            sysError("could not connect to server");
-            exit(-6);
-        }
-        sysInfo("connected");
-        //
-        tempdatainpointer = &this->data_send;
-        last_sleep_ms = sleep_ms;
-        pthread_t ncThread;
-        long tid = ++threads;
-        pthread_create(&ncThread,NULL,conv_loop,(void *)tid);
-    }
-    connection(){}
-    /**
-     * @brief closes the connection
-     */
-    void close()
-    {
-    }
-};

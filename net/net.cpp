@@ -1,7 +1,7 @@
 /*############################################################################################################
-# File: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net\addr.cpp                       #
+# File: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net\net.cpp                        #
 # Project: c:\Users\Administrator\OneDrive\Dokumente\GitHub\ProjectX_Library\net                             #
-# Created Date: Wednesday, June 30th 2021, 9:18:58 pm                                                        #
+# Created Date: Monday, September 6th 2021, 7:50:13 pm                                                       #
 # Author: Leonexxe (Leon Marcellus Nitschke-Höfer)                                                           #
 # -----                                                                                                      #
 # Copyright (c) 2021 Leon Marcellus Nitschke-Höfer (Leonexxe)                                                #
@@ -9,24 +9,10 @@
 # You may not remove or alter this copyright header.                                                         #
 ############################################################################################################*/
 #pragma once
-#include <string>
-
-namespace px
+namespace px::net 
 {
-    class addr
+    enum netProtocol
     {
-        public:
-        std::string IP;
-        int port;
-        addr(std::string IPAddress, int PORT)
-        {
-            this->IP = IPAddress;
-            this->port = PORT;
-        }
-        addr()
-        {
-            this->IP = "127.0.0.1";
-            this->port = 1;
-        }
+        STR,RTS,RSR
     };
 }
