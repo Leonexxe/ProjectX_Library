@@ -11,6 +11,7 @@
     #include "net/windows/server.cpp"
 #elif defined(PX_UNIX)
     #include "net/unix/connection.cpp"
+    #include "net/unix/server.cpp"
 #else
     #error os not supported
 #endif
