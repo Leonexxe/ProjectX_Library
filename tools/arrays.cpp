@@ -48,8 +48,8 @@ namespace px
              */
             char* constCharArrayToCharArray(const char* CC)
             {
-                #ifdef PX_WIN
-                    return _strdup(CC);
+                #ifdef PX_UNIX
+                    #warning px::constCHarArrayToCharArray function not supported on unix-like systems (though this does infact work on macOS, no idea why)
                 #else
                     return strdup(CC);
                 #endif

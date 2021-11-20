@@ -9,7 +9,6 @@
 # You may not remove or alter this copyright header.                                                         #
 ############################################################################################################*/
 #pragma once
-#define PX_WIN
 #include <string>
 #include <list>
 #include <projectX/tools/strings.cpp>
@@ -23,8 +22,6 @@
 #include <netdb.h>
 #include <netinet/in.h>
 #include <unistd.h>
-
-//TODO: implement unix net classes
 
 namespace px
 {
@@ -53,7 +50,6 @@ namespace px
 
         int _connect()
         {
-            //TODO: implement function
             //connect
             struct sockaddr_in serv_addr;
             struct hostent *server;
@@ -62,14 +58,14 @@ namespace px
             this->sockfd = socket(AF_INET, SOCK_STREAM, 0);
 
             if(sockfd < 0) {
-                perror("ERROR opening socket");
+                std::cout << px::ErrorPrefix() << "Error while opening socket!" << std::endl;
                 return -1;
             }
 
             server = gethostbyname(this->ADDR.IP.c_str());
 
             if(server == NULL) {
-                std::cout << "host not found, quitting!";
+                std::cout << px::ErrorPrefix() << "host not found!" << std::endl;
                 return -2;
             }
 
@@ -80,7 +76,7 @@ namespace px
 
             /* now connect to the server */
             if(connect(this->sockfd, (struct sockaddr*)&serv_addr, sizeof(serv_addr)) < 0)
-                return -3;
+                std::cout << px::ErrorPrefix() << "Error while connecting to server!" << std::endl;
 
             //RUN
             this->Run();
@@ -98,21 +94,20 @@ namespace px
         {
             const char* msg = this->m_send.c_str();
             int n;
-            n = write(this->sockfd, msg, strlen(msg));
+            if(this->running)
+                n = write(this->sockfd, msg, strlen(msg));
+            else
+                return -1;
+            std::cout << "sent " << msg << " to server!" << std::endl;
             if(n < 0)
-                return 1;
+                std::cout << px::ErrorPrefix() << "Error while sending data to server!" << std::endl;
             return 0;
         }
 
         unsigned char _send(std::string s)
         {
-            if(this->protocol != px::net::RSR)
-                return 1;
-            if(this->m_send != "")
-                return 2;
             this->m_send = s;
-            this->doSend();
-            return 0;
+            return this->doSend();
         }
 
         std::string getLastReceived(bool clear = 1)
@@ -135,6 +130,7 @@ namespace px
             int n = read(sockfd, server_reply, PX_NET_BUFFER_SIZE);
             if(n < 0)
                 return "";
+            this->m_lastReceived = std::string(server_reply);
             return std::string(server_reply);
         }
 
@@ -149,7 +145,8 @@ namespace px
             this->_send(this->m_STRSend);
             while(this->running){
                 std::string resp = this->receive();
-                this->_send(this->RecvFunction(&resp,this));
+                if(this->_send(this->RecvFunction(&resp,this)) == -1)
+                    return -1;
                 std::this_thread::sleep_for(std::chrono::milliseconds(10));}
             return 0;
         }

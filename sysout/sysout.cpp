@@ -191,6 +191,9 @@ namespace px {
             rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
             return rows;
         }
+    #else
+        int getConsoleHeight(){return 100;}
+        int getConsoleWidth(){return 100;}
     #endif
 
     std::string getCenterText(std::string text, int maxWidth)
@@ -204,10 +207,10 @@ namespace px {
     std::string getCenterText(std::string text)
     {
         std::string ret;
-        #ifndef PX_ARM64
+        #ifdef PX_WIN
             int Left = (px::getConsoleWidth()/2)+text.size();
         #else
-            #warning cant use getConsoleWidth function on arm64, using constant 100 instead!
+            #warning cant use getConsoleWidth function on unix-like, using constant 100 instead!
             int Left = 100;
         #endif
         px::text::manipulation::fillFront(&ret,' ',&text,Left);

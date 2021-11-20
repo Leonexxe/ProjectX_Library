@@ -145,12 +145,6 @@ namespace px
             this->LOG(px::getCenterText("session "+px::now(),bar.length()));
             this->LOG(barEMP);
             this->LOG(bar);
-            #ifdef PX_APP_ENABLE_PXE3_FILE_ENCRYPTION
-                std::ofstream outfile;
-                outfile.open("C:\\PX_WIN\\crypto.dump");
-                outfile << this->m_pxe3.getTable();
-                outfile.close();
-            #endif
         }
 
         //?
@@ -208,10 +202,26 @@ namespace px
         }
         void writeINI(std::string section,std::string name, std::string value)
         {
+            this->delINI(section,name);//delete old entry
             this->iniData.push_back({section,name,value});
+        }
+        void delINI(std::string section,std::string name)
+        {
+            std::list<std::list<std::string>> newINI;
+            int delEntries = 0;
+            for(std::list<std::string> I : this->iniData)
+                if(!(px::tools::lists::getElementByIndex(&I,-1) == section&&px::tools::lists::getElementByIndex(&I,0) == name))
+                    newINI.push_back(I);
+                else
+                    delEntries++;
+            this->iniData.clear();
+            for(std::list<std::string> II : newINI)
+                this->iniData.push_back(II);
+            this->LOG("Deleted "+std::to_string(delEntries)+" Entries from the INI\n");
         }
         std::string getINI(std::string section,std::string name)
         {
+            iniData.reverse();
             for(std::list<std::string> I : iniData)
             {
                 if(
@@ -227,7 +237,7 @@ namespace px
         }
         void loadINI(std::string filename = ".ini")
         {   
-            std::string filepath = this->m_InstallPath+"\\config\\"+filename;
+            std::string filepath = this->m_InstallPath+"/config/"+filename;
             this->iniFile = filepath;
             this->LOG(px::InfoPrefix() +"loading config from "+filepath+"\n");
             std::ifstream infile(filepath);
@@ -392,7 +402,7 @@ namespace px
         //? FILESYSTEM
         //?
         std::string m_InstallPath = "";
-        std::string m_LogPath = this->m_InstallPath + "\\LOG";
+        std::string m_LogPath = this->m_InstallPath + "/LOG";
 
         //?
         //? SYSOUT
@@ -443,7 +453,7 @@ namespace px
 
         void openLog(std::string name = "main") const
         {
-            createlogger(this->m_LogPath+"\\"+name+".log",name);
+            createlogger(this->m_LogPath+"/"+name+".log",name);
         }
 
         //?
@@ -537,6 +547,9 @@ namespace px
             #ifdef PX_WIN
                 std::string cmd = "taskkill /IM " + this->m_Pname + " /F";
                 system(px::strToConstChar(&cmd));
+            else
+                std::string cmd = "pkill " + this->m_Pname;
+                system(px::strToConstChar(&cmd));
             #endif
         }
         void _exit(int exitCode = -1)
@@ -565,13 +578,13 @@ namespace px
         double add = 1;
         // Start measuring time
         #ifdef PX_ARM64
-            #warning (px) app monitor can't be used on arm64
-            while(1) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-                for(std::string I : app->OUT_BUFFER)
-                    std::cout << I;
-            }
-        #else
+            #warning (px) app monitor might not work on arm64
+        #endif
+        while(1) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+            for(std::string I : app->OUT_BUFFER)
+                std::cout << I;
+        }
         if(globals::APP_BINARY_MONITOR)
         {
             while(1){
@@ -651,7 +664,6 @@ namespace px
             //print
             std::cout << ss.str();
         }}
-        #endif
     }
 
     template<int threadslots>

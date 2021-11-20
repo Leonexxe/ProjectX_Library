@@ -27,27 +27,13 @@
 
 namespace PXE3
 {
-    std::list<int> illegalChars = {0x0022,0x003B,0x002A};
-//    class subKey
-//    {
-//        public:
-//        subKey(){}
-//        subKey(std::string p_chars)
-//        {
-//            for(char I : p_chars)
-//                this->m_chars.push_back(I);
-//        }
-//        subKey(std::list<char> p_chars)
-//            :m_chars(p_chars){}
-//
-//        std::list<char> m_chars;
-//    };
+    std::list<int> illegalChars = {34,59,42};
     class PXE3
     {
         public:
         PXE3(std::string p_key,int p_length)
         {
-            char counter = 0;
+            unsigned char counter = 0;
             for(int I = p_length;I<p_length*PXE3_SUPPORTED_CHAR_COUNT;I+=p_length+1)
             {
                 this->m_subKeys[counter] = p_key.substr(0,p_length);
@@ -203,6 +189,12 @@ namespace PXE3
     };
 }
 
+
+/*
+    !
+    !deprecated calculations
+    !
+*/
 //* L = Subkey length
 //* possibilities
 //* 96 possible chars

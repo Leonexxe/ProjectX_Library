@@ -23,11 +23,13 @@ namespace px
             }
         }
 
-        void strToInt(unsigned long long* target, std::string* src)
+        template<typename T>
+        void strToInt(T* target, std::string* src)
         {
             unsigned long long mult = 1;
             std::string str = px::text::manipulation::reverse(src);
-            for(char I : str)
+            int II = 0;
+            for(char I : str.substr(1,str.size()-1))
             {
                 unsigned long long c = 0;
                 switch(I)
@@ -42,35 +44,11 @@ namespace px
                     case('7'):c=7;break;
                     case('8'):c=8;break;
                     case('9'):c=9;break;
-                    default:std::cout << px::ErrorPrefix() << "'" << I << "'("<<std::to_string(I)<< ") is not a number!" << std::endl;continue;
+                    default:std::cout << px::ErrorPrefix() << "'" << I << "'("<<std::to_string(II)<< ") is not a number!" << std::endl;continue;
                 }
                 *target+=c*mult;
                 mult *= 10;
-            }
-        }
-        void strToInt(int* target, std::string* src)
-        {
-            unsigned long long mult = 1;
-            std::string str = px::text::manipulation::reverse(src);
-            for(char I : str)
-            {
-                unsigned long long c = 0;
-                switch(I)
-                {
-                    case('0'):c=0;break;
-                    case('1'):c=1;break;
-                    case('2'):c=2;break;
-                    case('3'):c=3;break;
-                    case('4'):c=4;break;
-                    case('5'):c=5;break;
-                    case('6'):c=6;break;
-                    case('7'):c=7;break;
-                    case('8'):c=8;break;
-                    case('9'):c=9;break;
-                    default:std::cout << px::ErrorPrefix() << "'" << I << "'("<<std::to_string(I)<< ") is not a number!" << std::endl;continue;
-                }
-                *target+=c*mult;
-                mult *= 10;
+                II++;
             }
         }
 

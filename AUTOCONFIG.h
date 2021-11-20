@@ -5,6 +5,10 @@ Desc: description
 Created:  2021-08-19T09:17:18.823Z
 Modified: 2021-08-19T09:18:15.845Z
 */
+#define PX_CONFIG_COMPILER ""
+#define PX_CONFIG_ARCH ""
+#define PX_CONFIG_BITS 16
+#define PX_CONFIG_PLATFROM ""
 //!█████████████████████████████████████████████████████████████████████████████████████████████████
 //!█████████████████████████████████████████████████████████████████████████████████████████████████
 //!█████████████████████████████████████████████████████████████████████████████████████████████████
@@ -17,14 +21,17 @@ Modified: 2021-08-19T09:18:15.845Z
 //!█████████████████████████████████████████████████████████████████████████████████████████████████
 //!█████████████████████████████████████████████████████████████████████████████████████████████████
 #if defined(__clang__)
-    #pragma message("(PX) using clang compiler config")
+    #warning (PX) using clang compiler config
     #define PX_COMPILER_CLANG
+    #define PX_CONFIG_COMPILER "clang"
 #elif defined(__GNUC__)
     #pragma message("(PX) using GNU compiler config")
     #define PX_COMPILER_GNUC
+    #define PX_CONFIG_COMPILER "GNU"
 #elif defined(_MSC_VER)
     #pragma message("(PX) using MSVC compiler config")
     #define PX_COMPILER_MSVC
+    #define PX_CONFIG_COMPILER = "MSVC"
 #else
     #error Unsupported compiler
 #endif
@@ -44,12 +51,21 @@ Modified: 2021-08-19T09:18:15.845Z
     #ifdef __aarch64__
         #define PX_ARM64
         #define PX_CPU64
+        #warning (PX) using arm 64 bit CPU config
+        #define PX_CONFIG_ARCH "ARM"
+        #define PX_CONFIG_BITS 64
     #elif defined(__arm__)
         #define PX_ARM32
         #define PX_CPU32
-    #elif defined(__i386__)
+        #warning (PX) using arm 32 bit CPU config
+        #define PX_CONFIG_ARCH "ARM"
+        #define PX_CONFIG_BITS 32
+    #elif defined(__x86_64__)
         #define PX_X86
         #define PX_CPU64
+        #warning (PX) using x86 64 bit CPU config
+        #define PX_CONFIG_ARCH "x86"
+        #define PX_CONFIG_BITS 64
     #else
         #error Unknown CPU architecture!
     #endif
@@ -72,6 +88,7 @@ Modified: 2021-08-19T09:18:15.845Z
     // do unix stuff
     #if defined(__unix__)
         #pragma message "OS_AUTOCONFIG : UNIX"
+        #warning (PX) using UNIX OS config
         #ifndef PX_UNIX
             #define PX_UNIX
         #endif
@@ -81,6 +98,7 @@ Modified: 2021-08-19T09:18:15.845Z
     // do OSX stuff
     #if defined (__APPLE__)
         #pragma message "OS_AUTOCONFIG : mac OSX"
+        #warning (PX) using macOS OS config
         #ifndef PX_UNIX
             #define PX_UNIX
         #endif

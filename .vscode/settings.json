@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.ni": "plaintext",
         "xstring": "cpp",
         "algorithm": "cpp",
         "array": "cpp",
@@ -94,7 +95,12 @@
         "cstdarg": "cpp",
         "cwctype": "cpp",
         "mutex": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "__bits": "cpp",
+        "__memory": "cpp"
     },
-    "discord.enabled": true
+    "discord.enabled": true,
+    "cSpell.words": [
+        "pkill"
+    ]
 }

@@ -11,9 +11,10 @@ namespace px
             static std::string reverse(std::string *s)
             {
                 std::string ret;
+                const char* str = s->c_str();
                 for(int i = s->size();i>=0;i--)
                 {
-                    ret += s->c_str()[i];
+                    ret += str[i];
                 }
                 return ret;
             }

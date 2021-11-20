@@ -2,7 +2,7 @@
 #include <string>
 #include <iostream>
 
-namespace hashing
+namespace px::hashing
 {
     /**
      * @brief generates a md5 hash, uses <openssl/md5.h>
