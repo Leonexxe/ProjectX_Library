@@ -97,7 +97,8 @@
         "mutex": "cpp",
         "string_view": "cpp",
         "__bits": "cpp",
-        "__memory": "cpp"
+        "__memory": "cpp",
+        "__tree": "cpp"
     },
     "discord.enabled": true,
     "cSpell.words": [

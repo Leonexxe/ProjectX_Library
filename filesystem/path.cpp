@@ -1,33 +1,39 @@
+/*############################################################################################################
+# File: /Users/leonexxe/Documents/GitKraken/ProjectX_Library/filesystem/path.cpp                             #
+# Project: /Users/leonexxe/Documents/GitKraken/ProjectX_Library/filesystem                                   #
+# Created Date: Thursday, December 2nd 2021, 8:19:13 am                                                      #
+# Author: Leonexxe (Leon Marcellus Nitschke-Höfer)                                                           #
+# -----                                                                                                      #
+# Copyright (c) 2021 Leon Marcellus Nitschke-Höfer (Leonexxe)                                                #
+# -----                                                                                                      #
+# You may not remove or alter this copyright header.                                                         #
+############################################################################################################*/
 #pragma once
-#include <list>
-#include <string>
-#include <projectX/tools/strings.cpp>
+#include "master.h"
 
-namespace px
+#ifdef PX_WIN
+    #define PX_FS_FS "\\"
+#else
+    #define PX_FS_FS "/"
+#endif
+
+namespace px::filesystem
 {
-    namespace fs
+    path::path(std::string p = PX_FS_FS)
     {
-        class path
+    }
+
+    std::string strPath()
+    {
+        std::string result = PX_FS_FS;
+        for(std::string I : this->segments)
         {
-            public:
-            path(std::string *s) {
-                this->_path = split(*s+"/","/");
-            }
-            path(){}
-            std::list<std::string> _path;
-            bool isAbsolute = 0;
-            std::string getPath()
-            {
-                std::string p;
-                if(this->isAbsolute){p += "/";}
-                bool isFirst = 1;
-                for(std::string I : this->_path)
-                {
-                    if(isFirst == 0){isFirst = 0;p+="/";}else{isFirst = 0;}
-                    p += I;
-                }
-                return p;
-            }
-        };
+            result+=I+PX_FS_FS;
+        }
+        return result;
+    }
+
+    void stepOut()
+    {
     }
 }
