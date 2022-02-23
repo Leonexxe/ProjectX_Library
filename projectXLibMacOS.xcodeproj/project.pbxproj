@@ -10,6 +10,11 @@
 		BEC649CC27C59C8200B5A27B /* projectXLibMacOS.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */; };
 		BEC649CE27C59C8200B5A27B /* projectXLibMacOSPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */; };
 		BEC649D027C59C8200B5A27B /* projectXLibMacOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */; };
+		BEE26CF427C5BF56009788C7 /* application.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEE26CF327C5BF56009788C7 /* application.cpp */; };
+		BEE26CF627C5C743009788C7 /* base.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEE26CF527C5C743009788C7 /* base.cpp */; };
+		BEE26CFD27C5CB5D009788C7 /* filesys.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEE26CFC27C5CB5D009788C7 /* filesys.cpp */; };
+		BEE26D0027C5CEEB009788C7 /* PXE3.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEE26CFF27C5CEEB009788C7 /* PXE3.cpp */; };
+		BEE26D0627C6145C009788C7 /* math.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEE26D0527C6145C009788C7 /* math.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -17,6 +22,20 @@
 		BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOS.hpp; sourceTree = "<group>"; };
 		BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOSPriv.hpp; sourceTree = "<group>"; };
 		BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = projectXLibMacOS.cpp; sourceTree = "<group>"; };
+		BEC649D627C59DBA00B5A27B /* predef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = predef.h; sourceTree = "<group>"; };
+		BEE26CEF27C5AA5B009788C7 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
+		BEE26CF027C5AB74009788C7 /* base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		BEE26CF227C5AC87009788C7 /* app.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
+		BEE26CF327C5BF56009788C7 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		BEE26CF527C5C743009788C7 /* base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base.cpp; sourceTree = "<group>"; };
+		BEE26CFB27C5CB44009788C7 /* filesys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filesys.h; sourceTree = "<group>"; };
+		BEE26CFC27C5CB5D009788C7 /* filesys.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = filesys.cpp; sourceTree = "<group>"; };
+		BEE26CFE27C5CED7009788C7 /* PXE3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXE3.h; sourceTree = "<group>"; };
+		BEE26CFF27C5CEEB009788C7 /* PXE3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PXE3.cpp; sourceTree = "<group>"; };
+		BEE26D0227C5D4EC009788C7 /* filesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
+		BEE26D0327C5D509009788C7 /* pxe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pxe.h; sourceTree = "<group>"; };
+		BEE26D0427C61444009788C7 /* math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		BEE26D0527C6145C009788C7 /* math.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,11 +68,49 @@
 		BEC649CA27C59C8200B5A27B /* projectXLibMacOS */ = {
 			isa = PBXGroup;
 			children = (
+				BEE26CF127C5AC75009788C7 /* packages */,
+				BEC649D827C59FC100B5A27B /* header */,
+				BEC649D727C59FBB00B5A27B /* source */,
 				BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */,
 				BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */,
 				BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */,
 			);
 			path = projectXLibMacOS;
+			sourceTree = "<group>";
+		};
+		BEC649D727C59FBB00B5A27B /* source */ = {
+			isa = PBXGroup;
+			children = (
+				BEE26CF327C5BF56009788C7 /* application.cpp */,
+				BEE26CF527C5C743009788C7 /* base.cpp */,
+				BEE26CFC27C5CB5D009788C7 /* filesys.cpp */,
+				BEE26CFF27C5CEEB009788C7 /* PXE3.cpp */,
+				BEE26D0527C6145C009788C7 /* math.cpp */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		BEC649D827C59FC100B5A27B /* header */ = {
+			isa = PBXGroup;
+			children = (
+				BEC649D627C59DBA00B5A27B /* predef.h */,
+				BEE26CEF27C5AA5B009788C7 /* application.h */,
+				BEE26CF027C5AB74009788C7 /* base.h */,
+				BEE26CFB27C5CB44009788C7 /* filesys.h */,
+				BEE26CFE27C5CED7009788C7 /* PXE3.h */,
+				BEE26D0427C61444009788C7 /* math.h */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
+		BEE26CF127C5AC75009788C7 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				BEE26CF227C5AC87009788C7 /* app.h */,
+				BEE26D0227C5D4EC009788C7 /* filesystem.h */,
+				BEE26D0327C5D509009788C7 /* pxe.h */,
+			);
+			name = packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +182,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BEE26CF427C5BF56009788C7 /* application.cpp in Sources */,
 				BEC649D027C59C8200B5A27B /* projectXLibMacOS.cpp in Sources */,
+				BEE26CF627C5C743009788C7 /* base.cpp in Sources */,
+				BEE26CFD27C5CB5D009788C7 /* filesys.cpp in Sources */,
+				BEE26D0027C5CEEB009788C7 /* PXE3.cpp in Sources */,
+				BEE26D0627C6145C009788C7 /* math.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -183,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -236,7 +298,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 12.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -247,9 +309,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				EXCLUDED_ARCHS = "";
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -259,9 +324,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				EXCLUDED_ARCHS = "";
 				EXECUTABLE_PREFIX = lib;
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

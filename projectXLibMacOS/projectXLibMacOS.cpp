@@ -9,15 +9,11 @@
 #include "projectXLibMacOS.hpp"
 #include "projectXLibMacOSPriv.hpp"
 
-void projectXLibMacOS::HelloWorld(const char * s)
-{
-    projectXLibMacOSPriv *theObj = new projectXLibMacOSPriv;
-    theObj->HelloWorldPriv(s);
-    delete theObj;
-};
+#include "pxe.h"
 
-void projectXLibMacOSPriv::HelloWorldPriv(const char * s) 
+int main()
 {
-    std::cout << s << std::endl;
-};
-
+	px::pxe4 pxe;
+	pxe.generateKey(10);
+	std::cout << "cypher: " << pxe.encrypt("das pferd frisst keinen kartoffelsalat") << std::endl;
+}
