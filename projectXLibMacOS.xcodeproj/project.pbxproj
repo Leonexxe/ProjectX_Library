@@ -78,7 +78,7 @@
 		BE5A4D122812F167004122C4 /* projectXLibMacOS */ = {
 			isa = PBXGroup;
 			children = (
-				BEE26CF127C5AC75009788C7 /* packages */,
+				BE5A4D14281325D0004122C4 /* packages */,
 				BEC649D827C59FC100B5A27B /* header */,
 				BEC649D727C59FBB00B5A27B /* source */,
 				BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */,
@@ -96,6 +96,18 @@
 				BEE26D0927C67D11009788C7 /* TestPlan.xctestplan */,
 			);
 			name = "xcode stuff";
+			sourceTree = "<group>";
+		};
+		BE5A4D14281325D0004122C4 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				BEE26CF227C5AC87009788C7 /* app.h */,
+				BEE26D0227C5D4EC009788C7 /* filesystem.h */,
+				BEE26D0327C5D509009788C7 /* pxe.h */,
+				BE8F3C2027D32DB300C6BEF5 /* net.h */,
+				BE78EBD127DF287700436890 /* GUI.h */,
+			);
+			name = packages;
 			sourceTree = "<group>";
 		};
 		BE9C642427F791C100D47C4B /* gui */ = {
@@ -182,19 +194,6 @@
 				BED031FE28115C0700992200 /* Metal.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		BEE26CF127C5AC75009788C7 /* packages */ = {
-			isa = PBXGroup;
-			children = (
-				BEE26CF227C5AC87009788C7 /* app.h */,
-				BEE26D0227C5D4EC009788C7 /* filesystem.h */,
-				BEE26D0327C5D509009788C7 /* pxe.h */,
-				BE8F3C2027D32DB300C6BEF5 /* net.h */,
-				BE78EBD127DF287700436890 /* GUI.h */,
-			);
-			name = packages;
-			path = projectXLibMacOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
