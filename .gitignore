@@ -1,0 +1,6 @@
+# xcode related files
+TestPlan.xctestplan
+
+# directories
+Products/
+Frameworks/

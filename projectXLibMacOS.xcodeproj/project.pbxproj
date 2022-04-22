@@ -17,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		BE5A4D1028116659004122C4 /* pairlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pairlist.h; sourceTree = "<group>"; };
+		BE5A4D112812F056004122C4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BE78EBD127DF287700436890 /* GUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GUI.h; sourceTree = "<group>"; };
 		BE78EBD227DF28B200436890 /* gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.h; sourceTree = "<group>"; };
 		BE78EBD327DF28C100436890 /* gui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gui.cpp; sourceTree = "<group>"; };
@@ -74,6 +75,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE5A4D122812F167004122C4 /* projectXLibMacOS */ = {
+			isa = PBXGroup;
+			children = (
+				BEE26CF127C5AC75009788C7 /* packages */,
+				BEC649D827C59FC100B5A27B /* header */,
+				BEC649D727C59FBB00B5A27B /* source */,
+				BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */,
+				BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */,
+				BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */,
+			);
+			name = projectXLibMacOS;
+			sourceTree = "<group>";
+		};
+		BE5A4D132812F2C7004122C4 /* xcode stuff */ = {
+			isa = PBXGroup;
+			children = (
+				BEC649C927C59C8200B5A27B /* Products */,
+				BED031FD28115C0700992200 /* Frameworks */,
+				BEE26D0927C67D11009788C7 /* TestPlan.xctestplan */,
+			);
+			name = "xcode stuff";
+			sourceTree = "<group>";
+		};
 		BE9C642427F791C100D47C4B /* gui */ = {
 			isa = PBXGroup;
 			children = (
@@ -101,10 +125,9 @@
 		BEC649BF27C59C8200B5A27B = {
 			isa = PBXGroup;
 			children = (
-				BEE26D0927C67D11009788C7 /* TestPlan.xctestplan */,
-				BEC649CA27C59C8200B5A27B /* projectXLibMacOS */,
-				BEC649C927C59C8200B5A27B /* Products */,
-				BED031FD28115C0700992200 /* Frameworks */,
+				BE5A4D112812F056004122C4 /* .gitignore */,
+				BE5A4D122812F167004122C4 /* projectXLibMacOS */,
+				BE5A4D132812F2C7004122C4 /* xcode stuff */,
 			);
 			sourceTree = "<group>";
 		};
@@ -114,19 +137,6 @@
 				BEC649C827C59C8200B5A27B /* libprojectXLibMacOS.a */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BEC649CA27C59C8200B5A27B /* projectXLibMacOS */ = {
-			isa = PBXGroup;
-			children = (
-				BEE26CF127C5AC75009788C7 /* packages */,
-				BEC649D827C59FC100B5A27B /* header */,
-				BEC649D727C59FBB00B5A27B /* source */,
-				BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */,
-				BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */,
-				BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */,
-			);
-			path = projectXLibMacOS;
 			sourceTree = "<group>";
 		};
 		BEC649D727C59FBB00B5A27B /* source */ = {
@@ -184,6 +194,7 @@
 				BE78EBD127DF287700436890 /* GUI.h */,
 			);
 			name = packages;
+			path = projectXLibMacOS;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
