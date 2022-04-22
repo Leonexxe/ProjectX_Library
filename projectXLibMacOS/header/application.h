@@ -5,13 +5,13 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
-#ifndef application_h
-#define application_h
-
 #include "predef.h"
 #include "base.h"
 #include <string>
 #include <thread>
+
+#ifndef application_h
+#define application_h
 
 namespace px
 {
@@ -21,6 +21,8 @@ namespace px
     #ifndef PX_APP_REDEFINE_threadInfo
         typedef base::threadInfo threadInfo;
     #endif
+	
+	void appDefaultSigHandler(PX_APP_sigHandlerArgs);
 	
     class application
     {

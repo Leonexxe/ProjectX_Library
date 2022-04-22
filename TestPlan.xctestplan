@@ -1,0 +1,23 @@
+{
+  "configurations" : [
+    {
+      "id" : "63FDB7D0-CCE3-4DEF-976F-2792503AFDE2",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:projectXLibMacOS.xcodeproj",
+      "identifier" : "BEC649C727C59C8200B5A27B",
+      "name" : "projectXLibMacOS"
+    },
+    "testTimeoutsEnabled" : true
+  },
+  "testTargets" : [
+
+  ],
+  "version" : 1
+}

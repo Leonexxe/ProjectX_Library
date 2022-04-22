@@ -5,10 +5,10 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
+#include "predef.h"
+
 #ifndef base_h
 #define base_h
-
-#include "predef.h"
 
 namespace px::base
 {

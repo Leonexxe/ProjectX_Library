@@ -54,6 +54,33 @@ namespace px
 
     //common data types
     typedef __ushort__ batteryLevel;
+	
+	//empty function
+	void none();
+	
+	//
+	//enums
+	//
+	enum ImageFormat
+	{
+		JPG,PNG,HEIC,PDF,SVG,ICO
+	};
+	enum VideoFormat
+	{
+		mp4,MOV
+	};
+	enum programmingLanguage
+	{
+		C,CPP,ASMx86,JAVA,JAVASCRIPT,PHP,PYTHON,GO,RUST,CSS,HTML,SWIFT,ASM_ARM
+	};
+	enum DataFormat
+	{
+		JSON,XML
+	};
+	enum formatMisc
+	{
+		txt,docx,rtf,csv,xlsx,pptx
+	};
 }
 
 #endif /* predef_h */

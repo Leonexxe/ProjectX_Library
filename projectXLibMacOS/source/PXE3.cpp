@@ -28,17 +28,36 @@ namespace px
 	
 	__string__ pxe4::decrypt(__string__ cypher)
 	{
-		return "";
+		__string__ result;
+		for(__long__ I = 0;I<cypher.size();I+=this->subKeyLen)
+		{
+			__string__ subCypherStr;
+			for(__long__ II = 0;II<this->subKeyLen;II++)
+				subCypherStr.push_back(cypher[I+II]);
+			for(__long__ II = 0;II<256;II++)
+				if(this->Key[II] == subCypherStr)
+					result+=this->Key[II];
+		}
+		return result;
+	}
+	
+	__string__ pxe4::getKey()
+	{
+		__string__ result;
+		for(__long__ I = 0;I<256;I++)
+			result+=this->Key[I];
+		return result;
 	}
 	
 	__uint__ pxe4::generateKey(__uint__ subKeySize)
 	{
-		for(__short__ I = 0;I<255;I++)
+		//this function is actually kinda slow because i decided to use a string array for the key instead of a 2 dimensional char array
+		for(__int__ I = 0;I<255;I++)
 			for(__short__ II = 0;II<subKeySize;II++)
-				this->Key[I][II] = px::random(32,126);
+				this->Key[I].push_back(px::random(32,126));
 		
-		__int__ additionLen = random(1,100);
-		for(__short__ III = 0;III<additionLen;III++)
+		this->additionLen = random(1,100);
+		for(__int__ III = 0;III<this->additionLen;III++)
 			this->addition.push_back(px::random(32,126));
 		return 0;
 	}

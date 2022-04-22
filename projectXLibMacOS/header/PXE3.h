@@ -26,13 +26,15 @@ namespace px
 		__string__ encrypt(__string__ msg);
 		__string__ decrypt(__string__ cypher);
 		__uint__ generateKey(__uint__ subKeySize);
+		__string__ getKey();
 		
 	#ifndef PX_PTP_PXE4
 		private:
 	#endif
-		char Key[256][PXE4_SKS_UL];//this shit is fucking stupid, because of the absence of VLA's i litterally need to allocate 131072 (256x64x8) bytes of memory for no fucking reason at all whatsoever
+		__string__ Key[256];// this was orginally supposed to be a 2 dimensional char array but i actually decided to use a string array instead because i think that for the average use case this is gonna be more efficient
 		__string__ addition;
 		__int__ subKeyLen = 0;
+		__int__ additionLen = 0;
 	};
 }
 

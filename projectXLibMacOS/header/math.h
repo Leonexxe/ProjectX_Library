@@ -5,11 +5,11 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
-#ifndef math_h
-#define math_h
-
 #include "predef.h"
 #include <cmath>
+
+#ifndef math_h
+#define math_h
 
 namespace px
 {
@@ -47,6 +47,33 @@ namespace px
 			__int__ hC);
 	
 	__int__ random(__int__ min, __int__ max);
+	
+	template<int vSize, typename dataType>
+	class vector
+	{
+		vector();
+		vector(std::list<dataType> data);
+		dataType get(__int__ index);
+	};
+	
+	template<typename vectorType>
+	vector<2,vectorType> rotate0_2D(__double__ alpha,
+		vector<2,vectorType> pointA,
+		vector<2,vectorType> pointO);
+	
+	/**
+	 * @brief returns the distance between 2 points in an n-dimensional space
+	 */
+	template<typename vectorType, int vSize>
+	__double__ distance(
+			vector<vSize,vectorType> vA,
+			vector<vSize,vectorType> vB);
+	
+	/**
+	 * @brief returns the angle between 2 vectors
+	 */
+	template<typename vectorType>
+	__double__ angleBV(vector<2,vectorType> A,vector<2,vectorType>);
 }
 
 

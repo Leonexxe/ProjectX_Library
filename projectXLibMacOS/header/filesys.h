@@ -5,12 +5,12 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
+#include "predef.h"
+#include "../pxe.h"
+
 #ifndef filesys_h
 #define filesys_h
 
-
-#include "predef.h"
-#include "../pxe.h"
 namespace px
 {
 	__string__ getFileContent(__string__ fname);

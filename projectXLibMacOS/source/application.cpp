@@ -9,6 +9,10 @@
 
 namespace px
 {
+	void appDefaultSigHandler(PX_APP_sigHandlerArgs)
+	{
+	}
+	
 	application::application(){}
 	
 	application::application(
@@ -47,6 +51,8 @@ namespace px
 	//signal handling
 	void installSignalHandler(void(*sigHandler)(PX_APP_sigHandlerArgs))
 	{
+		if(sigHandler == nullptr)
+			sigHandler = appDefaultSigHandler;
 	}
 	
 	void removeSignalHandler()
