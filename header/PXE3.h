@@ -6,7 +6,7 @@
 //
 
 #include "predef.h"
-#include "math.h"
+#include "../math.h"
 
 #ifndef PXE4_h
 #define PXE4_h

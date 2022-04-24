@@ -5,8 +5,7 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
-#include <stdio.h>
-
+#pragma once
 #include "../header/math.h"
 #include "temp.cpp"
 
