@@ -60,6 +60,7 @@ namespace px
 	#ifdef PX_DEBUG
 		std::cout << "(pxe4) generating key..." << std::endl;
 	#endif
+		this->subKeyLen = subKeySize;
 		//this function is actually kinda slow because i decided to use a string array for the key instead of a 2 dimensional char array
 		for(__int__ I = 0;I<255;I++)
 			for(__short__ II = 0;II<subKeySize;II++)
