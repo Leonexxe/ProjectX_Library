@@ -71,6 +71,11 @@ namespace px
 		return R;
 	}
 	
+	
+	/**
+	 @brief rotates pointA around pointO by alpha
+	 */
+	template<typename vectorType>
 	vector<2,vectorType> rotate2D(__double__ alpha, vector<2,vectorType>* pointA,
 		vector<2,vectorType>* pointO)
 	{
@@ -84,18 +89,25 @@ namespace px
 		return vector<2,vectorType>({(cA*Ax-sA*Ay),(sA*Ax+cA*Ay)})+pointO;
 	}
 	
-	
-	
+	/**
+	 @brief calculates the distance between 2 points in an n-dimensional space (source: https://en.wikipedia.org/wiki/Distance)
+	 */
+	template<typename vectorType, int vSize>
 	__double__ distance(
 			vector<vSize,vectorType>* vA,
 			vector<vSize,vectorType>* vB)
 	{
-		__vectorType__ total;
+		vectorType total;
 		for(int I = 0;I<vSize;I++)
-			total += (vA->get(I)-vB->get(I))**2
+			total += pow((vA->get(I)-vB->get(I)),2);
 		return sqrt(total);
 	}
 	
+	
+	/**
+	 @brief calculates the angle between 2 vectors
+	 */
+	template<typename vectorType>
 	__double__ angleBV(vector<2,vectorType> A,vector<2,vectorType> B)
 	{
 		vectorType aX = A->get(0);
@@ -103,7 +115,7 @@ namespace px
 		vectorType bX = B->get(0);
 		vectorType bY = B->get(1);
 		
-		return acos((aX*bX+aY*bY)/(sqrt(aX**2+aY**2)*sqrt(bX**2+bY**2)));
+		return acos((aX*bX+aY*bY)/(sqrt(pow(aX,2)+pow(aY,2))*sqrt(pow(bX,2)+pow(bY,2))));
 	}
 	
 	template<int vSize, typename pointType>
