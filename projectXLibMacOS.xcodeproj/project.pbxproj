@@ -1,0 +1,444 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BEC649CC27C59C8200B5A27B /* projectXLibMacOS.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */; };
+		BEC649CE27C59C8200B5A27B /* projectXLibMacOSPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */; };
+		BED031FF28115C0700992200 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED031FE28115C0700992200 /* Metal.framework */; };
+		BED0320128115C1500992200 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED0320028115C1500992200 /* Foundation.framework */; };
+		BED0320328115C1A00992200 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED0320228115C1A00992200 /* QuartzCore.framework */; };
+		BED03206281163C300992200 /* projectXLibMacOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		BE5A4D1028116659004122C4 /* pairlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pairlist.h; sourceTree = "<group>"; };
+		BE5A4D112812F056004122C4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		BE78EBD127DF287700436890 /* GUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GUI.h; sourceTree = "<group>"; };
+		BE78EBD227DF28B200436890 /* gui.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.h; sourceTree = "<group>"; };
+		BE78EBD327DF28C100436890 /* gui.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gui.cpp; sourceTree = "<group>"; };
+		BE78EBD527DF290100436890 /* gui.openGL.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gui.openGL.cpp; sourceTree = "<group>"; };
+		BE78EBD727DF291300436890 /* gui.OSX.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gui.OSX.cpp; sourceTree = "<group>"; };
+		BE8F3C2027D32DB300C6BEF5 /* net.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net.h; sourceTree = "<group>"; };
+		BE8F3C2127D32DD500C6BEF5 /* net.core.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net.core.h; sourceTree = "<group>"; };
+		BE8F3C2427D32E0800C6BEF5 /* net.core.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = net.core.cpp; sourceTree = "<group>"; };
+		BE8F3C2627D32F5C00C6BEF5 /* net.server.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = net.server.h; sourceTree = "<group>"; };
+		BE8F3C2727D32F6A00C6BEF5 /* net.server.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = net.server.cpp; sourceTree = "<group>"; };
+		BE8F3C3127D4A96100C6BEF5 /* net.server.UNIX.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = net.server.UNIX.cpp; sourceTree = "<group>"; };
+		BE8F3C3327D4A9A000C6BEF5 /* AUTOCONFIG.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AUTOCONFIG.h; sourceTree = "<group>"; };
+		BE8F3C3427D4AAE000C6BEF5 /* net.server.WIN32.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = net.server.WIN32.cpp; sourceTree = "<group>"; };
+		BE9C642127F4509F00D47C4B /* gui.window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.window.h; sourceTree = "<group>"; };
+		BE9C642227F450CA00D47C4B /* gui.element.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.element.h; sourceTree = "<group>"; };
+		BE9C642327F5885400D47C4B /* gui.canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.canvas.h; sourceTree = "<group>"; };
+		BEC649C827C59C8200B5A27B /* libprojectXLibMacOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libprojectXLibMacOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOS.hpp; sourceTree = "<group>"; };
+		BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOSPriv.hpp; sourceTree = "<group>"; };
+		BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = projectXLibMacOS.cpp; sourceTree = "<group>"; };
+		BEC649D627C59DBA00B5A27B /* predef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = predef.h; sourceTree = "<group>"; };
+		BED031FA280F475900992200 /* gui.element.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = gui.element.cpp; sourceTree = "<group>"; };
+		BED031FC280FA94900992200 /* gui.activeElement.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.activeElement.h; sourceTree = "<group>"; };
+		BED031FE28115C0700992200 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
+		BED0320028115C1500992200 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		BED0320228115C1A00992200 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BED0320528115DD800992200 /* gui.object.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.object.h; sourceTree = "<group>"; };
+		BEE26CEF27C5AA5B009788C7 /* application.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = application.h; sourceTree = "<group>"; };
+		BEE26CF027C5AB74009788C7 /* base.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = base.h; sourceTree = "<group>"; };
+		BEE26CF227C5AC87009788C7 /* app.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = app.h; sourceTree = "<group>"; };
+		BEE26CF327C5BF56009788C7 /* application.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = application.cpp; sourceTree = "<group>"; };
+		BEE26CF527C5C743009788C7 /* base.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = base.cpp; sourceTree = "<group>"; };
+		BEE26CFB27C5CB44009788C7 /* filesys.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filesys.h; sourceTree = "<group>"; };
+		BEE26CFC27C5CB5D009788C7 /* filesys.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = filesys.cpp; sourceTree = "<group>"; };
+		BEE26CFE27C5CED7009788C7 /* PXE3.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PXE3.h; sourceTree = "<group>"; };
+		BEE26CFF27C5CEEB009788C7 /* PXE3.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = PXE3.cpp; sourceTree = "<group>"; };
+		BEE26D0227C5D4EC009788C7 /* filesystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = filesystem.h; sourceTree = "<group>"; };
+		BEE26D0327C5D509009788C7 /* pxe.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pxe.h; sourceTree = "<group>"; };
+		BEE26D0427C61444009788C7 /* math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		BEE26D0527C6145C009788C7 /* math.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = math.cpp; sourceTree = "<group>"; };
+		BEE26D0927C67D11009788C7 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		BEC649C627C59C8200B5A27B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED0320328115C1A00992200 /* QuartzCore.framework in Frameworks */,
+				BED0320128115C1500992200 /* Foundation.framework in Frameworks */,
+				BED031FF28115C0700992200 /* Metal.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		BE5A4D122812F167004122C4 /* projectXLibMacOS */ = {
+			isa = PBXGroup;
+			children = (
+				BE5A4D14281325D0004122C4 /* packages */,
+				BEC649D827C59FC100B5A27B /* header */,
+				BEC649D727C59FBB00B5A27B /* source */,
+				BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */,
+				BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */,
+				BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */,
+			);
+			name = projectXLibMacOS;
+			sourceTree = "<group>";
+		};
+		BE5A4D132812F2C7004122C4 /* xcode stuff */ = {
+			isa = PBXGroup;
+			children = (
+				BEC649C927C59C8200B5A27B /* Products */,
+				BED031FD28115C0700992200 /* Frameworks */,
+				BEE26D0927C67D11009788C7 /* TestPlan.xctestplan */,
+			);
+			name = "xcode stuff";
+			sourceTree = "<group>";
+		};
+		BE5A4D14281325D0004122C4 /* packages */ = {
+			isa = PBXGroup;
+			children = (
+				BEE26CF227C5AC87009788C7 /* app.h */,
+				BEE26D0227C5D4EC009788C7 /* filesystem.h */,
+				BEE26D0327C5D509009788C7 /* pxe.h */,
+				BE8F3C2027D32DB300C6BEF5 /* net.h */,
+				BE78EBD127DF287700436890 /* GUI.h */,
+			);
+			name = packages;
+			sourceTree = "<group>";
+		};
+		BE9C642427F791C100D47C4B /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				BE78EBD327DF28C100436890 /* gui.cpp */,
+				BE78EBD727DF291300436890 /* gui.OSX.cpp */,
+				BE78EBD527DF290100436890 /* gui.openGL.cpp */,
+				BED031FA280F475900992200 /* gui.element.cpp */,
+			);
+			name = gui;
+			sourceTree = "<group>";
+		};
+		BE9C642527F793E000D47C4B /* gui */ = {
+			isa = PBXGroup;
+			children = (
+				BE78EBD227DF28B200436890 /* gui.h */,
+				BE9C642127F4509F00D47C4B /* gui.window.h */,
+				BE9C642227F450CA00D47C4B /* gui.element.h */,
+				BED031FC280FA94900992200 /* gui.activeElement.h */,
+				BE9C642327F5885400D47C4B /* gui.canvas.h */,
+				BED0320528115DD800992200 /* gui.object.h */,
+			);
+			name = gui;
+			sourceTree = "<group>";
+		};
+		BEC649BF27C59C8200B5A27B = {
+			isa = PBXGroup;
+			children = (
+				BE5A4D112812F056004122C4 /* .gitignore */,
+				BE5A4D122812F167004122C4 /* projectXLibMacOS */,
+				BE5A4D132812F2C7004122C4 /* xcode stuff */,
+			);
+			sourceTree = "<group>";
+		};
+		BEC649C927C59C8200B5A27B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BEC649C827C59C8200B5A27B /* libprojectXLibMacOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEC649D727C59FBB00B5A27B /* source */ = {
+			isa = PBXGroup;
+			children = (
+				BE9C642427F791C100D47C4B /* gui */,
+				BEE26CFF27C5CEEB009788C7 /* PXE3.cpp */,
+				BEE26CFC27C5CB5D009788C7 /* filesys.cpp */,
+				BEE26CF327C5BF56009788C7 /* application.cpp */,
+				BEE26CF527C5C743009788C7 /* base.cpp */,
+				BEE26D0527C6145C009788C7 /* math.cpp */,
+				BE8F3C2427D32E0800C6BEF5 /* net.core.cpp */,
+				BE8F3C2727D32F6A00C6BEF5 /* net.server.cpp */,
+				BE8F3C3127D4A96100C6BEF5 /* net.server.UNIX.cpp */,
+				BE8F3C3427D4AAE000C6BEF5 /* net.server.WIN32.cpp */,
+			);
+			path = source;
+			sourceTree = "<group>";
+		};
+		BEC649D827C59FC100B5A27B /* header */ = {
+			isa = PBXGroup;
+			children = (
+				BE9C642527F793E000D47C4B /* gui */,
+				BEC649D627C59DBA00B5A27B /* predef.h */,
+				BEE26CEF27C5AA5B009788C7 /* application.h */,
+				BEE26CF027C5AB74009788C7 /* base.h */,
+				BEE26CFB27C5CB44009788C7 /* filesys.h */,
+				BEE26CFE27C5CED7009788C7 /* PXE3.h */,
+				BEE26D0427C61444009788C7 /* math.h */,
+				BE8F3C2127D32DD500C6BEF5 /* net.core.h */,
+				BE8F3C2627D32F5C00C6BEF5 /* net.server.h */,
+				BE5A4D1028116659004122C4 /* pairlist.h */,
+				BE8F3C3327D4A9A000C6BEF5 /* AUTOCONFIG.h */,
+			);
+			path = header;
+			sourceTree = "<group>";
+		};
+		BED031FD28115C0700992200 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BED0320228115C1A00992200 /* QuartzCore.framework */,
+				BED0320028115C1500992200 /* Foundation.framework */,
+				BED031FE28115C0700992200 /* Metal.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		BEC649C427C59C8200B5A27B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BEC649CE27C59C8200B5A27B /* projectXLibMacOSPriv.hpp in Headers */,
+				BEC649CC27C59C8200B5A27B /* projectXLibMacOS.hpp in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		BEC649C727C59C8200B5A27B /* projectXLibMacOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEC649D327C59C8200B5A27B /* Build configuration list for PBXNativeTarget "projectXLibMacOS" */;
+			buildPhases = (
+				BEC649C427C59C8200B5A27B /* Headers */,
+				BEC649C527C59C8200B5A27B /* Sources */,
+				BEC649C627C59C8200B5A27B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = projectXLibMacOS;
+			productName = projectXLibMacOS;
+			productReference = BEC649C827C59C8200B5A27B /* libprojectXLibMacOS.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BEC649C027C59C8200B5A27B /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1320;
+				TargetAttributes = {
+					BEC649C727C59C8200B5A27B = {
+						CreatedOnToolsVersion = 13.2.1;
+					};
+				};
+			};
+			buildConfigurationList = BEC649C327C59C8200B5A27B /* Build configuration list for PBXProject "projectXLibMacOS" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = BEC649BF27C59C8200B5A27B;
+			productRefGroup = BEC649C927C59C8200B5A27B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				BEC649C727C59C8200B5A27B /* projectXLibMacOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		BEC649C527C59C8200B5A27B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BED03206281163C300992200 /* projectXLibMacOS.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		BEC649D127C59C8200B5A27B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/metal-cpp";
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		BEC649D227C59C8200B5A27B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/metal-cpp";
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		BEC649D427C59C8200B5A27B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		BEC649D527C59C8200B5A27B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CODE_SIGN_STYLE = Automatic;
+				EXCLUDED_ARCHS = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				MACOSX_DEPLOYMENT_TARGET = 12.2;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		BEC649C327C59C8200B5A27B /* Build configuration list for PBXProject "projectXLibMacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEC649D127C59C8200B5A27B /* Debug */,
+				BEC649D227C59C8200B5A27B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BEC649D327C59C8200B5A27B /* Build configuration list for PBXNativeTarget "projectXLibMacOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BEC649D427C59C8200B5A27B /* Debug */,
+				BEC649D527C59C8200B5A27B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BEC649C027C59C8200B5A27B /* Project object */;
+}
