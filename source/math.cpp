@@ -36,6 +36,30 @@ namespace px
 		return -1;
 	}
 	
+	//
+	//vector class
+	//
+	template<int vSize, typename dataType>
+	vector::vector(){}
+	template<int vSize, typename dataType>
+	vector::vector(std::list<dataType> data)
+		:data(data){}
+	
+	template<int vSize, typename dataType>
+	dataType vector::get(__int__ index)
+	{
+		return this->data[index];
+	}
+	
+	template<int vSize, typename dataType>
+	void vector::set(__int__ index, dataType value)
+	{
+		this->data[index] = value;
+	}
+	
+	//
+	// random
+	//
 	template<typename returnType>
 	returnType random()
 	{
@@ -58,7 +82,7 @@ namespace px
 	 * @return returnType
 	 */
 	template<typename inputType,typename returnType>
-	returnType random(inputType min, inputType max,std::list<inputType>* exclude = nullptr)
+	returnType random(inputType min, inputType max,std::list<inputType>* exclude)
 	{
 		returnType R = random<returnType>();
 		while(R < min || R > max || px::tools::lists::contains(exclude,(inputType)R))

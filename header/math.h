@@ -46,14 +46,31 @@ namespace px
 			__int__ hB,
 			__int__ hC);
 	
-	__int__ random(__int__ min, __int__ max);
+	template<typename returnType>
+	returnType random();
+	
+	template<typename inputType,typename returnType>
+	returnType random(__int__ min, __int__ max);
+	
+	template<typename inputType,typename returnType>
+	returnType random(inputType min, inputType max,std::list<inputType>* exclude = nullptr);
 	
 	template<int vSize, typename dataType>
 	class vector
 	{
+	#ifndef PX_PTP_GUI_BOUNDS
+		private:
+	#else
+		public:
+	#endif
+		std::list<dataType> data;
+		
+	public:
+		
 		vector();
 		vector(std::list<dataType> data);
 		dataType get(__int__ index);
+		void set(__int__ index,dataType value);
 	};
 	
 	template<typename vectorType>
