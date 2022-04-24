@@ -42,7 +42,7 @@ namespace px
 				subCypherStr.push_back(cypher[I+II]);
 			for(__long__ II = 0;II<256;II++)
 				if(this->Key[II] == subCypherStr)
-					result+=this->Key[II];
+					result.push_back(II);
 		}
 		return result;
 	}
