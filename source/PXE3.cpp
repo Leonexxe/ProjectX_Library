@@ -8,6 +8,7 @@
 #include <stdio.h>
 
 #include "../header/PXE3.h"
+#include <fstream>
 
 namespace px
 {
@@ -45,6 +46,32 @@ namespace px
 					result.push_back(II);
 		}
 		return result;
+	}
+	
+	void pxe4::encryptFile(__string__ filename,__string__ outputFileName)
+	{
+		std::ifstream ifs(filename);
+		std::string content( (std::istreambuf_iterator<char>(ifs) ),
+								  (std::istreambuf_iterator<char>()    ) );
+		
+		std::string cypherContent = this->encrypt(content);
+		
+		std::ofstream out(outputFileName);
+		out << cypherContent;
+		out.close();
+	}
+	
+	void pxe4::decryptFile(__string__ cypherFileName,__string__ outputFileName)
+	{
+		std::ifstream ifs(cypherFileName);
+		std::string cypherContent( (std::istreambuf_iterator<char>(ifs) ),
+							(std::istreambuf_iterator<char>()    ) );
+		
+		std::string content = this->decrypt(cypherContent);
+		
+		std::ofstream out(outputFileName);
+		out << content;
+		out.close();
 	}
 	
 	__string__ pxe4::getKey()

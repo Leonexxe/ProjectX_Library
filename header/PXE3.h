@@ -25,6 +25,8 @@ namespace px
 		
 		__string__ encrypt(__string__ msg);
 		__string__ decrypt(__string__ cypher);
+		void decryptFile(__string__ cypherFileName, __string__ outputFileName);
+		void encryptFile(__string__ filename, __string__ outputFileName);
 		__uint__ generateKey(__uint__ subKeySize);
 		__string__ getKey();
 		
