@@ -20,6 +20,9 @@ namespace px
 	
 	__string__ pxe4::encrypt(__string__ msg)
 	{
+	#ifdef PX_DEBUG
+		std::cout << "(pxe4) encrypting..." << std::endl;
+	#endif
 		__string__ result = "";
 		for(unsigned char I : msg)
 			result+=__string__(this->Key[I]);
@@ -28,6 +31,9 @@ namespace px
 	
 	__string__ pxe4::decrypt(__string__ cypher)
 	{
+	#ifdef PX_DEBUG
+		std::cout << "(pxe4) decrypting..." << std::endl;
+	#endif
 		__string__ result;
 		for(__long__ I = 0;I<cypher.size();I+=this->subKeyLen)
 		{
@@ -51,6 +57,9 @@ namespace px
 	
 	__uint__ pxe4::generateKey(__uint__ subKeySize)
 	{
+	#ifdef PX_DEBUG
+		std::cout << "(pxe4) generating key..." << std::endl;
+	#endif
 		//this function is actually kinda slow because i decided to use a string array for the key instead of a 2 dimensional char array
 		for(__int__ I = 0;I<255;I++)
 			for(__short__ II = 0;II<subKeySize;II++)
