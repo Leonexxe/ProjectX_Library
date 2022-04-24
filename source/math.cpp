@@ -39,19 +39,19 @@ namespace px
 	//vector class
 	//
 	template<int vSize, typename dataType>
-	vector::vector(){}
+	vector<int vSize, typename dataType>::vector(){}
 	template<int vSize, typename dataType>
-	vector::vector(std::list<dataType> data)
+	vector<int vSize, typename dataType>::vector(std::list<dataType> data)
 		:data(data){}
 	
 	template<int vSize, typename dataType>
-	dataType vector::get(__int__ index)
+	dataType vector<int vSize, typename dataType>::get(__int__ index)
 	{
 		return this->data[index];
 	}
 	
 	template<int vSize, typename dataType>
-	void vector::set(__int__ index, dataType value)
+	void vector<int vSize, typename dataType>::set(__int__ index, dataType value)
 	{
 		this->data[index] = value;
 	}

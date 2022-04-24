@@ -5,11 +5,11 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
-#include "predef.h"
-#include "../math.h"
-
 #ifndef PXE4_h
 #define PXE4_h
+
+#include "predef.h"
+#include "../math.h"
 
 #ifndef PXE4_SKS_UL
 	#define PXE4_SKS_UL 64
