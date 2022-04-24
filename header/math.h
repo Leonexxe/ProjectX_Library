@@ -50,9 +50,6 @@ namespace px
 	returnType random();
 	
 	template<typename inputType,typename returnType>
-	returnType random(__int__ min, __int__ max);
-	
-	template<typename inputType,typename returnType>
 	returnType random(inputType min, inputType max,std::list<inputType>* exclude = nullptr);
 	
 	template<int vSize, typename dataType>
