@@ -76,6 +76,5 @@ namespace px
 	__double__ angleBV(vector<2,vectorType> A,vector<2,vectorType>);
 }
 
-
-
+#include "../source/math.cpp"
 #endif /* math_h */

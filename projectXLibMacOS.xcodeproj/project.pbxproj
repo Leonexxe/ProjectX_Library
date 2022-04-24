@@ -34,6 +34,7 @@
 		BE9C642127F4509F00D47C4B /* gui.window.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.window.h; sourceTree = "<group>"; };
 		BE9C642227F450CA00D47C4B /* gui.element.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.element.h; sourceTree = "<group>"; };
 		BE9C642327F5885400D47C4B /* gui.canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.canvas.h; sourceTree = "<group>"; };
+		BEBDC59B28155CBA00049F41 /* temp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = temp.cpp; sourceTree = "<group>"; };
 		BEC649C827C59C8200B5A27B /* libprojectXLibMacOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libprojectXLibMacOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOS.hpp; sourceTree = "<group>"; };
 		BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOSPriv.hpp; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 				BE8F3C2727D32F6A00C6BEF5 /* net.server.cpp */,
 				BE8F3C3127D4A96100C6BEF5 /* net.server.UNIX.cpp */,
 				BE8F3C3427D4AAE000C6BEF5 /* net.server.WIN32.cpp */,
+				BEBDC59B28155CBA00049F41 /* temp.cpp */,
 			);
 			path = source;
 			sourceTree = "<group>";

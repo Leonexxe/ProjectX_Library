@@ -8,9 +8,15 @@
 #include <stdio.h>
 
 #include "../header/math.h"
+#include "temp.cpp"
 
 namespace px
 {
+	namespace math {
+		bool __init__(){srand(time(0));return 0;}
+		bool m_init = __init__();
+	}
+	
 	__double__ getMissingValueTriangle(
 		//sides
 		__int__ sideA,
@@ -30,9 +36,39 @@ namespace px
 		return -1;
 	}
 	
-	__int__ random(__int__ min, __int__ max)
+	template<typename returnType>
+	returnType random()
 	{
-		return rand();
+	#ifdef PX_c1
+		returnType R = (returnType)(rand())*0.0000001;
+		return R;
+	#else
+		returnType R = (returnType)rand();
+		return R;
+	#endif
+	}
+	
+	/**
+	 * @brief this is **NOT** realtime safe! it is important that one can cast from inputType to returnType
+	 *
+	 * @tparam inputType
+	 * @tparam returnType
+	 * @param min
+	 * @param max
+	 * @return returnType
+	 */
+	template<typename inputType,typename returnType>
+	returnType random(inputType min, inputType max,std::list<inputType>* exclude = nullptr)
+	{
+		returnType R = random<returnType>();
+		while(R < min || R > max || px::tools::lists::contains(exclude,(inputType)R))
+		{
+			R = random<returnType>();
+		#ifdef PX_DEBUG
+			std::cout << R << std::endl;
+		#endif
+		}
+		return R;
 	}
 	
 	vector<2,vectorType> rotate2D(__double__ alpha, vector<2,vectorType>* pointA,

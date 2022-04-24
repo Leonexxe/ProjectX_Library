@@ -54,11 +54,11 @@ namespace px
 		//this function is actually kinda slow because i decided to use a string array for the key instead of a 2 dimensional char array
 		for(__int__ I = 0;I<255;I++)
 			for(__short__ II = 0;II<subKeySize;II++)
-				this->Key[I].push_back(px::random(32,126));
+				this->Key[I].push_back(px::random<__int__,__int__>(32,126));
 		
 		this->additionLen = random(1,100);
 		for(__int__ III = 0;III<this->additionLen;III++)
-			this->addition.push_back(px::random(32,126));
+			this->addition.push_back(px::random<__int__,__int__>(32,126));
 		return 0;
 	}
 }
