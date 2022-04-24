@@ -96,7 +96,7 @@ namespace px
 		return sqrt(total);
 	}
 	
-	__double__ angleBV(vector<2,vectorType> A,vector<2,vectorType>)
+	__double__ angleBV(vector<2,vectorType> A,vector<2,vectorType> B)
 	{
 		vectorType aX = A->get(0);
 		vectorType aY = A->get(1);
