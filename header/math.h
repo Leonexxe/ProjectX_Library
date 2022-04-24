@@ -57,7 +57,7 @@ namespace px
 	};
 	
 	template<typename vectorType>
-	vector<2,vectorType> rotate0_2D(__double__ alpha,
+	vector<2,vectorType> rotate2D(__double__ alpha,
 		vector<2,vectorType> pointA,
 		vector<2,vectorType> pointO);
 	

@@ -51,10 +51,10 @@ namespace px
 	/**
 	 * @brief this is **NOT** realtime safe! it is important that one can cast from inputType to returnType
 	 *
-	 * @tparam inputType
-	 * @tparam returnType
-	 * @param min
-	 * @param max
+	 * @tparam inputType .
+	 * @tparam returnType .
+	 * @param min .
+	 * @param max .
 	 * @return returnType
 	 */
 	template<typename inputType,typename returnType>
@@ -74,15 +74,17 @@ namespace px
 	vector<2,vectorType> rotate2D(__double__ alpha, vector<2,vectorType>* pointA,
 		vector<2,vectorType>* pointO)
 	{
-		__vectorType__ Ox = pointO->get(0);
-		__vectorType__ Oy = pointO->get(1);
+		vectorType Ox = pointO->get(0);
+		vectorType Oy = pointO->get(1);
 		pointA = vectorBP(pointO,pointA);
-		__vectorType__ Ax = pointA->get(0);
-		__vectorType__ Ay = pointA->get(1);
+		vectorType Ax = pointA->get(0);
+		vectorType Ay = pointA->get(1);
 		__double__ cA = cos(alpha);
 		__double__ sA = sin(alpha);
 		return vector<2,vectorType>({(cA*Ax-sA*Ay),(sA*Ax+cA*Ay)})+pointO;
 	}
+	
+	
 	
 	__double__ distance(
 			vector<vSize,vectorType>* vA,
