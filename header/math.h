@@ -69,6 +69,8 @@ namespace px
 		dataType get(__int__ index);
 		void set(__int__ index,dataType value);
 	};
+	typedef vector<2,__int__> point2D;
+	typedef vector<3,__int__> point2D;
 	
 	template<typename vectorType>
 	vector<2,vectorType> rotate2D(__double__ alpha,

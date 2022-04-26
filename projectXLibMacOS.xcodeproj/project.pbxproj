@@ -10,12 +10,15 @@
 		BEC649CC27C59C8200B5A27B /* projectXLibMacOS.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */; };
 		BEC649CE27C59C8200B5A27B /* projectXLibMacOSPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */; };
 		BED031FF28115C0700992200 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED031FE28115C0700992200 /* Metal.framework */; };
-		BED0320128115C1500992200 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED0320028115C1500992200 /* Foundation.framework */; };
+		BED0320128115C1500992200 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED0320028115C1500992200 /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		BED0320328115C1A00992200 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED0320228115C1A00992200 /* QuartzCore.framework */; };
 		BED03206281163C300992200 /* projectXLibMacOS.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BEC649CF27C59C8200B5A27B /* projectXLibMacOS.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE539F33281806E700FCB3C7 /* text.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
+		BE539F342818075F00FCB3C7 /* text.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
+		BE539F352818077F00FCB3C7 /* text.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		BE5A4D1028116659004122C4 /* pairlist.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = pairlist.h; sourceTree = "<group>"; };
 		BE5A4D112812F056004122C4 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		BE78EBD127DF287700436890 /* GUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GUI.h; sourceTree = "<group>"; };
@@ -36,6 +39,8 @@
 		BE9C642327F5885400D47C4B /* gui.canvas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.canvas.h; sourceTree = "<group>"; };
 		BEBDC59B28155CBA00049F41 /* temp.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = temp.cpp; sourceTree = "<group>"; };
 		BEBDC59D281567BC00049F41 /* math.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = math.h; sourceTree = "<group>"; };
+		BEBDC59F2817D0DB00049F41 /* gui.draw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.draw.h; sourceTree = "<group>"; };
+		BEBDC5A02817D38E00049F41 /* gui.color.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.color.h; sourceTree = "<group>"; };
 		BEC649C827C59C8200B5A27B /* libprojectXLibMacOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libprojectXLibMacOS.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOS.hpp; sourceTree = "<group>"; };
 		BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = projectXLibMacOSPriv.hpp; sourceTree = "<group>"; };
@@ -68,8 +73,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED0320328115C1A00992200 /* QuartzCore.framework in Frameworks */,
 				BED0320128115C1500992200 /* Foundation.framework in Frameworks */,
+				BED0320328115C1A00992200 /* QuartzCore.framework in Frameworks */,
 				BED031FF28115C0700992200 /* Metal.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,6 +114,7 @@
 				BE8F3C2027D32DB300C6BEF5 /* net.h */,
 				BE78EBD127DF287700436890 /* GUI.h */,
 				BEBDC59D281567BC00049F41 /* math.h */,
+				BE539F352818077F00FCB3C7 /* text.h */,
 			);
 			name = packages;
 			sourceTree = "<group>";
@@ -133,6 +139,8 @@
 				BED031FC280FA94900992200 /* gui.activeElement.h */,
 				BE9C642327F5885400D47C4B /* gui.canvas.h */,
 				BED0320528115DD800992200 /* gui.object.h */,
+				BEBDC59F2817D0DB00049F41 /* gui.draw.h */,
+				BEBDC5A02817D38E00049F41 /* gui.color.h */,
 			);
 			name = gui;
 			sourceTree = "<group>";
@@ -168,6 +176,7 @@
 				BE8F3C3127D4A96100C6BEF5 /* net.server.UNIX.cpp */,
 				BE8F3C3427D4AAE000C6BEF5 /* net.server.WIN32.cpp */,
 				BEBDC59B28155CBA00049F41 /* temp.cpp */,
+				BE539F342818075F00FCB3C7 /* text.cpp */,
 			);
 			path = source;
 			sourceTree = "<group>";
@@ -186,6 +195,7 @@
 				BE8F3C2627D32F5C00C6BEF5 /* net.server.h */,
 				BE5A4D1028116659004122C4 /* pairlist.h */,
 				BE8F3C3327D4A9A000C6BEF5 /* AUTOCONFIG.h */,
+				BE539F33281806E700FCB3C7 /* text.h */,
 			);
 			path = header;
 			sourceTree = "<group>";
@@ -392,7 +402,7 @@
 		BEC649D427C59C8200B5A27B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				EXCLUDED_ARCHS = "";
 				EXECUTABLE_PREFIX = lib;
@@ -408,7 +418,7 @@
 		BEC649D527C59C8200B5A27B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_USE_OPTIMIZATION_PROFILE = YES;
+				CLANG_USE_OPTIMIZATION_PROFILE = NO;
 				CODE_SIGN_STYLE = Automatic;
 				EXCLUDED_ARCHS = "";
 				EXECUTABLE_PREFIX = lib;
