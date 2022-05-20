@@ -5,4 +5,12 @@
 // copyright (c) Leon marcellus nitschke-Höfer (Leonexxe) 2022
 //
 
-#include <stdio.h>
+#include "../header/gui.h"
+
+
+namespace px::gui
+{
+	window::window(Bounds bounds)
+	{
+	}
+}

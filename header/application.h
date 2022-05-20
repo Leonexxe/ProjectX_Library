@@ -66,6 +66,13 @@ namespace px
 		//signal handling
 		void installSignalHanlder(void(*sigHanlder)(PX_APP_sigHandlerArgs));
 		void removeSignalHanlder();
+		
+		//file system
+		void createFile(__string__ name);
+		void deleteFile(__string__ name);
+		void appendToFile(__string__ name);
+		void writeFile(__string__ file, __string__ content);
+		void clearFile(__string__ file);
     };
 }
 

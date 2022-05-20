@@ -8,7 +8,8 @@
 #ifndef text_h
 #define text_h
 
-#include <vector>ç
+#include <vector>
+#inclue "predef.h"
 
 namespace px
 {
@@ -19,7 +20,10 @@ namespace px
 	 * @param delimiter
 	 * @return std::list<std::string>
 	 */
-	std::vector<std::string> strSplit(std::string s, std::string delimiter);
+	std::vector<__string__> strSplit(__string__ s, __string__ delimiter);
+	
+	__string__ strReplace(__string__ s, __string__ tbr, __string__ replacement);
+	__string__ strReplace(__string__ s, char c, char replacement);
 }
 
 #endif /* text_h */

@@ -15,9 +15,7 @@ namespace px
 	pxe4::pxe4(){}
 	
 	pxe4::pxe4(__string__ key, __uint__ overflow, __uint__ subKeySize)
-	{
-		this->subKeyLen = subKeySize;
-	}
+		:subKeyLen(subKeySize){}
 	
 	__string__ pxe4::encrypt(__string__ msg)
 	{

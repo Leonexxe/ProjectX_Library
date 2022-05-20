@@ -9,10 +9,6 @@
 #define gui_h
 
 #include "predef.h"
-#include "gui.object.h"
-#include "gui.element.h"
-#include "gui.window.h"
-#include "math.h"
 
 namespace px::gui
 {
@@ -46,5 +42,10 @@ namespace px::gui
 		STATIC,SEMI_STATIC,CHANGING
 	};
 }
+
+#include "gui.object.h"
+#include "gui.element.h"
+#include "gui.window.h"
+#include "math.h"
 
 #endif /* gui_h */

@@ -8,5 +8,9 @@
 #ifndef GUI_h
 #define GUI_h
 
+#include "header/gui.h"
+#if PX_CONFIG_OS == 1
+	#include "source/gui.OSX.cpp"
+#endif
 
 #endif /* GUI_h */

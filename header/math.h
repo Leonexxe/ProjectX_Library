@@ -7,6 +7,7 @@
 
 #include "predef.h"
 #include <cmath>
+#include <vector>
 
 #ifndef math_h
 #define math_h
@@ -15,36 +16,22 @@ namespace px
 {
 	namespace math
 	{
-		const __double__ PI = 3.1415; // PI constant
-		const __double__ PythagorasConstant = 1.41421; //Pythagoras constant
-		const __double__ TheodorusConstant = 1.73205; //Theodorus' Constant
-		const __double__ DelianConstant = 1.25992; //Delian constant = cube root of 2 ==> 3√2
-		const __double__ EulersNumber = 2.71828;
-		const __double__ OmegaConstant = 0.56714;
+		const __double__ PI = PX_CONSTANTS_MATH_PI; // PI constant
+		const __double__ PythagorasConstant = PX_CONSTANTS_MATH_PYTHAGORAS; //Pythagoras constant
+		const __double__ TheodorusConstant = PX_CONSTANTS_MATH_THEODORUS; //Theodorus' Constant
+		const __double__ DelianConstant = PX_CONSTANTS_MATH_DELIAN; //Delian constant = cube root of 2 ==> 3√2
+		const __double__ EulersNumber = PX_CONSTANTS_MATH_EULERS;
+		const __double__ OmegaConstant = PX_CONSTANTS_MATH_OMEGA;
 		
 		//might add more if happen to be bored at some point
 		//see https://en.wikipedia.org/wiki/List_of_mathematical_constants for a list of mathematical constants
 	}
 	namespace physics
 	{
-		const __double__ G = 9.81; // 1G (accelaration due to gravitiy on earth = 9.81m/s^2)
-		const __long__ speedOfLigth = 299792458; // 299792458 m/s ==> speed of light in a vacuum
-		const __double__ FaradayConstant = 96485.33289; //Faraday constant F ==> coulombs per mole
+		const __double__ G = PX_CONSTANTS_PHYSICS_G; // 1G (accelaration due to gravitiy on earth = 9.81m/s^2)
+		const __long__ speedOfLigth = PX_CONSTANTS_PHYSICS_speedOfLight; // 299792458 m/s ==> speed of light in a vacuum
+		const __double__ FaradayConstant = PX_CONSTANTS_PHYSICS_FARADAY; //Faraday constant F ==> coulombs per mole
 	}
-	
-	__double__ getMissingValueTriangle(
-			//sides
-			__int__ sideA,
-			__int__ sideB,
-			__int__ sideC,
-			//angles
-			__int__ alpha,
-			__int__ beta,
-			__int__ gamma,
-			//heights
-			__int__ hA,
-			__int__ hB,
-			__int__ hC);
 	
 	template<typename returnType>
 	returnType random();
@@ -55,22 +42,22 @@ namespace px
 	template<int vSize, typename dataType>
 	class vector
 	{
-	#ifndef PX_PTP_GUI_BOUNDS
+	#ifndef PX_PTP_VECTOR
 		private:
 	#else
 		public:
 	#endif
-		std::list<dataType> data;
+		std::vector<dataType> data;
 		
 	public:
 		
 		vector();
-		vector(std::list<dataType> data);
+		vector(std::vector<dataType> data);
 		dataType get(__int__ index);
 		void set(__int__ index,dataType value);
 	};
 	typedef vector<2,__int__> point2D;
-	typedef vector<3,__int__> point2D;
+	typedef vector<3,__int__> point3D;
 	
 	template<typename vectorType>
 	vector<2,vectorType> rotate2D(__double__ alpha,
@@ -90,5 +77,27 @@ namespace px
 	 */
 	template<typename vectorType>
 	__double__ angleBV(vector<2,vectorType> A,vector<2,vectorType>);
+	
+	/**
+	 * @brief stores information on a range of numbers
+	 */
+	template<typename numType>
+	class range
+	{
+	#ifndef PX_PTP_RANGE
+		private:
+	#else
+		public:
+	#endif
+		numType min;
+		numType max;
+		
+	public:
+		range();
+		range(numType min, numType max);
+		
+		bool isInRange(numType n);
+		bool isInRange(range<numType> r);
+	};
 }
 #endif /* math_h */

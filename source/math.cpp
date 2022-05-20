@@ -16,25 +16,6 @@ namespace px
 		bool m_init = __init__();
 	}
 	
-	__double__ getMissingValueTriangle(
-		//sides
-		__int__ sideA,
-		__int__ sideB,
-		__int__ sideC,
-		//angles
-		__int__ alpha,
-		__int__ beta,
-		__int__ gamma,
-		//heights
-		__int__ hA,
-		__int__ hB,
-		__int__ hC,
-		//misc
-		__string__ s)
-	{
-		return -1;
-	}
-	
 	//
 	//vector class
 	//
@@ -42,7 +23,7 @@ namespace px
 	vector<vSize,dataType>::vector(){}
 	
 	template<int vSize, typename dataType>
-	vector<vSize,dataType>::vector(std::list<dataType> data)
+	vector<vSize,dataType>::vector(std::vector<dataType> data)
 		:data(data){}
 	
 	template<int vSize, typename dataType>
@@ -149,6 +130,24 @@ namespace px
 	{
 		return vector<vSize,pointType>({b->get(0)-a->get(0),b->get(1)-a->get(1)});
 	}
+	
+	template<typename numType>
+	range<numType>::range(numType min, numType max)
+		:min(min),max(max){}
+	
+	template<typename numType>
+	bool range<numType>::isInRange(numType n)
+	{
+		if(n >= this->min && n <= this->max)
+			return 1;
+		return 0;
+	}
+	
+	template<typename numType>
+	bool range<numType>::isInRange(range<numType> r)
+	{
+		if(this->min >= r.min && this->max <= r.max)
+			return 1;
+		return 0;
+	}
 }
-
-

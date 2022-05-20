@@ -35,6 +35,7 @@ namespace px::gui
 		std::list<element> UPDATE_STATIC;
 		
 	public:
+		window(Bounds bounds);
 		int close();
 		bool isForeground();
 		bool hasFocus();

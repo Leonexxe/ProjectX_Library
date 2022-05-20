@@ -32,4 +32,21 @@ namespace px
 #endif
 		return res;
 	}
+	
+	__string__ strReplace(__string__ s, __string__ tbr, __string__ replacement)
+	{
+		__string__ result;
+		std::vector<__int__> positions;
+		while(int I(s.find(tbr)) != std::npos)
+		{
+		}
+	}
+	
+	__string__ strReplace(__string__ s, char c, char replacement)
+	{
+		for(__int__ I = 0;I<s.size();I++)
+			if(s[I] == c)
+				s[I] = replacement;
+		return s;
+	}
 }

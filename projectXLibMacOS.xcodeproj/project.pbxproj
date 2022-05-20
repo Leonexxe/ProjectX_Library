@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE382699282FD2DA006E8725 /* Documentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = BE382698282FD2DA006E8725 /* Documentation.docc */; };
+		BE3826A0283526FC006E8725 /* Crypto.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BE38269F283526FC006E8725 /* Crypto.cpp */; };
 		BEC649CC27C59C8200B5A27B /* projectXLibMacOS.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CB27C59C8200B5A27B /* projectXLibMacOS.hpp */; };
 		BEC649CE27C59C8200B5A27B /* projectXLibMacOSPriv.hpp in Headers */ = {isa = PBXBuildFile; fileRef = BEC649CD27C59C8200B5A27B /* projectXLibMacOSPriv.hpp */; };
 		BED031FF28115C0700992200 /* Metal.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BED031FE28115C0700992200 /* Metal.framework */; };
@@ -16,6 +18,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BE382698282FD2DA006E8725 /* Documentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Documentation.docc; sourceTree = "<group>"; };
+		BE38269D2830387C006E8725 /* gui.OSX.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gui.OSX.h; sourceTree = "<group>"; };
+		BE38269E2835256C006E8725 /* Crypto.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Crypto.h; sourceTree = "<group>"; };
+		BE38269F283526FC006E8725 /* Crypto.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Crypto.cpp; sourceTree = "<group>"; };
+		BE3826F02837D895006E8725 /* config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = config.h; sourceTree = "<group>"; };
 		BE539F33281806E700FCB3C7 /* text.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
 		BE539F342818075F00FCB3C7 /* text.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = text.cpp; sourceTree = "<group>"; };
 		BE539F352818077F00FCB3C7 /* text.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = text.h; sourceTree = "<group>"; };
@@ -82,9 +89,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BE38269B283030AC006E8725 /* gui.OSX */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = gui.OSX;
+			sourceTree = "<group>";
+		};
+		BE38269C283030B9006E8725 /* gui.openGL */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = gui.openGL;
+			sourceTree = "<group>";
+		};
 		BE5A4D122812F167004122C4 /* projectXLibMacOS */ = {
 			isa = PBXGroup;
 			children = (
+				BE382698282FD2DA006E8725 /* Documentation.docc */,
 				BE5A4D14281325D0004122C4 /* packages */,
 				BEC649D827C59FC100B5A27B /* header */,
 				BEC649D727C59FBB00B5A27B /* source */,
@@ -122,9 +144,11 @@
 		BE9C642427F791C100D47C4B /* gui */ = {
 			isa = PBXGroup;
 			children = (
-				BE78EBD327DF28C100436890 /* gui.cpp */,
 				BE78EBD727DF291300436890 /* gui.OSX.cpp */,
 				BE78EBD527DF290100436890 /* gui.openGL.cpp */,
+				BE38269C283030B9006E8725 /* gui.openGL */,
+				BE38269B283030AC006E8725 /* gui.OSX */,
+				BE78EBD327DF28C100436890 /* gui.cpp */,
 				BED031FA280F475900992200 /* gui.element.cpp */,
 			);
 			name = gui;
@@ -134,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				BE78EBD227DF28B200436890 /* gui.h */,
+				BE38269D2830387C006E8725 /* gui.OSX.h */,
 				BE9C642127F4509F00D47C4B /* gui.window.h */,
 				BE9C642227F450CA00D47C4B /* gui.element.h */,
 				BED031FC280FA94900992200 /* gui.activeElement.h */,
@@ -167,6 +192,7 @@
 			children = (
 				BE9C642427F791C100D47C4B /* gui */,
 				BEE26CFF27C5CEEB009788C7 /* PXE3.cpp */,
+				BE38269F283526FC006E8725 /* Crypto.cpp */,
 				BEE26CFC27C5CB5D009788C7 /* filesys.cpp */,
 				BEE26CF327C5BF56009788C7 /* application.cpp */,
 				BEE26CF527C5C743009788C7 /* base.cpp */,
@@ -187,9 +213,11 @@
 				BE9C642527F793E000D47C4B /* gui */,
 				BEC649D627C59DBA00B5A27B /* predef.h */,
 				BEE26CEF27C5AA5B009788C7 /* application.h */,
+				BE3826F02837D895006E8725 /* config.h */,
 				BEE26CF027C5AB74009788C7 /* base.h */,
 				BEE26CFB27C5CB44009788C7 /* filesys.h */,
 				BEE26CFE27C5CED7009788C7 /* PXE3.h */,
+				BE38269E2835256C006E8725 /* Crypto.h */,
 				BEE26D0427C61444009788C7 /* math.h */,
 				BE8F3C2127D32DD500C6BEF5 /* net.core.h */,
 				BE8F3C2627D32F5C00C6BEF5 /* net.server.h */,
@@ -280,6 +308,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BED03206281163C300992200 /* projectXLibMacOS.cpp in Sources */,
+				BE3826A0283526FC006E8725 /* Crypto.cpp in Sources */,
+				BE382699282FD2DA006E8725 /* Documentation.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -412,6 +442,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = /Users/Leonexxe/code/LIB/;
 			};
 			name = Debug;
 		};
@@ -428,6 +459,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				"SYSTEM_HEADER_SEARCH_PATHS[arch=*]" = /Users/Leonexxe/code/LIB/;
 			};
 			name = Release;
 		};
